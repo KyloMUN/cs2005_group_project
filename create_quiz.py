@@ -1,5 +1,6 @@
+"""TODO WRITE ME
+"""
 import datetime
-import shelve
 
 
 class Quiz:
@@ -18,17 +19,12 @@ class Quiz:
             endtime - datetime timedelta
             timelimit - datetime timedelta
         """
-        self._questionset = []
-        self._targetstudents = targetstudents
+        self._questions = {}
         self._numofattempts = numofattempts
-        self._finalweight = finalweight
         self._starttime = starttime
         self._endtime = endtime
         self._timelimit = timelimit
 
-    def get_question_set(self):
-        """Return the question set as a list."""
-        return self._questionset
 
     def add_new_question(self, questionobj):
         """
@@ -37,7 +33,7 @@ class Quiz:
         Params:
             questionobj - a question object
         """
-        self._questionset.append(questionobj)
+        self._questions.append(questionobj)
 
     def remove_question(self, questionnumber):
         """
@@ -46,24 +42,11 @@ class Quiz:
         Params:
             questionnumber - int
         """
-        del self._questionset[questionnumber-1]  # indexing starts at 0
-
-    def get_target_students(self):
-        """Return the target student group."""
-        return self._targetstudents
-
-    def modify_target(self, newtargetgroup):
-        """
-        Allow authorized user to change who is intended to take the quiz.
-
-        Params:
-            newtargetgroup - list
-        """
-        self._targetstudents = newtargetgroup
+        del self._questions  # indexing starts at 0
 
     def get_num_of_attempts(self):
         """Return the number of attempts allowed."""
-        return self._numOfattempts
+        return self._numofattempts
 
     def modify_num_of_attempts(self, newnumber):
         """
@@ -72,7 +55,7 @@ class Quiz:
         Params:
             newnumber - int
         """
-        self._numOfattempts = newnumber
+        self._numofattempts = newnumber
 
     def get_final_weight(self):
         """Return the final weight."""
@@ -126,20 +109,23 @@ class Quiz:
         return self._timelimit
 
     def modify_time_limit(self, newtimeamount):
-        """
-        Allow authorized user to modify the quiz duration.
+        """Allow authorized user to modify the quiz duration.
 
         This is a stub implementation (may not use timedelta)
-        
-        Params:
-            newtimeamount - time in minutes.
+
+        newtimeamount -- time in minutes.
         """
         self._timelimit = datetime.timedelta(newtimeamount)
 
+    def is_available(self):
+        if datetime.datetime.now() > self._starttime and datetime.datetime.now() < self._endtime:
+            return True
+        else:
+            return False
+
 
 class Question:
-    """
-    Parent class of all question types.
+    """Parent class of all question types.
 
     Supports True and False by default.
     """
@@ -148,9 +134,8 @@ class Question:
         """
         Create a question object.
 
-        Params:
-            questiontext - a string of text
-            correctans - a string of text
+        questiontext -- a string of text
+        correctans -- a string of text
         """
         self._questiontext = questiontext
         self._correctans = [correctans.toUpper()]
@@ -164,12 +149,10 @@ class Question:
         self._correctans.append(newacceptableanswer.toUpper())
 
     def remove_an_answer(self, invalid, replacement=None):
-        """
-        Allow quiz maker to remove or remove an answer.
+        """Allow quiz maker to remove or remove an answer.
 
-        Params:
-            invalid - string
-            replacement - string
+        invalid -- string
+        replacement -- string
         """
         if replacement is not None:
             self._correctans.append(replacement.toUpper())
@@ -180,20 +163,16 @@ class MultipleChoice(Question):
     """Create a multiple choice question object."""
 
     def __init__(self, listofoptions):
-        """
-        Create multiple choice question object.
+        """Create multiple choice question object.
 
-        Params:
-            numberofoptions = int
+        numberofoptions -- int
         """
         self._listofoptions = listofoptions
 
     def add_option(self, newoption):
-        """
-        Add a new option to list of options.
+        """Add a new option to list of options.
 
-        Param:
-            newoption - string
+        newoption -- string
         """
         self._listofoptions.append(newoption)
 
@@ -202,31 +181,25 @@ class FillInTheBlank(Question):
     """Create a fill in the blank question."""
 
     def __init__(self, wordbank):
-        """
-        Create fill in the blank question object.
+        """Create fill in the blank question object.
 
-        Params:
-            wordbank - list
+        wordbank -- list
         """
         self._wordbank = wordbank
         for words in self._wordbank:
             words.toUpper()  # @jack does this work
 
     def add_single_to_wordbank(self, newword):
-        """
-        Add a single string to wordbank.
+        """Add a single string to wordbank.
 
-        Params:
-            new - string
+        new -- string
         """
         self._wordbank.append(newword)
 
     def add_list_to_wordbank(self, listofwords):
-        """
-        Add a list of words to wordbank.
+        """Add a list of words to wordbank.
 
-        Params:
-            listofwords - list
+        listofwords -- list
         """
         for words in listofwords:
             self._wordbank.append(words.toUpper())
