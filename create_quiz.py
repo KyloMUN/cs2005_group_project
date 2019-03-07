@@ -1,30 +1,27 @@
-"""TODO WRITE ME
-"""
 import datetime
+
+import shortuuid
 
 
 class Quiz:
     """Creates a new quiz object."""
 
-    def __init__(self, targetstudents, numofattempts, finalweight,
-                 starttime, endtime, timelimit=None):
-        """
-        Create a quiz object.
+    def __init__(self, numofattempts, starttime, endtime, timelimit=None):
+        """Create a quiz object.
 
-        Params:
-            targetstudents - list of users who can take the quiz
-            numofattempts - int
-            finalweight - int
-            starttime - datetime timedelta
-            endtime - datetime timedelta
-            timelimit - datetime timedelta
+        targetstudents -- list of users who can take the quiz
+        numofattempts -- int
+        finalweight -- int
+        starttime -- datetime timedelta
+        endtime -- datetime timedelta
+        timelimit -- datetime timedelta
         """
         self._questions = {}
         self._numofattempts = numofattempts
         self._starttime = starttime
         self._endtime = endtime
         self._timelimit = timelimit
-
+        self._questionnumber = len(self._questions)
 
     def add_new_question(self, questionobj):
         """
@@ -33,16 +30,16 @@ class Quiz:
         Params:
             questionobj - a question object
         """
-        self._questions.append(questionobj)
+        self._questions[(questionobj._getquestionid] = questionobj
 
-    def remove_question(self, questionnumber):
+    def remove_question(self, questionid):
         """
         Remove the question at position questionNumber.
 
         Params:
             questionnumber - int
         """
-        del self._questions  # indexing starts at 0
+        
 
     def get_num_of_attempts(self):
         """Return the number of attempts allowed."""
@@ -130,23 +127,31 @@ class Question:
     Supports True and False by default.
     """
 
-    def __init__(self, questiontext, correctans):
+    def __init__(self, questiontext, correctanswer, displaytext=None):
         """
         Create a question object.
 
         questiontext -- a string of text
         correctans -- a string of text
         """
+        self._question_id = shortuuid.uuid()
         self._questiontext = questiontext
-        self._correctans = [correctans.toUpper()]
+        self._answers = {'correctanswer':}
+
+    def get_question_id(self):
+        """Return question uuid."""
+        return self._question_id
 
     def get_question_text(self):
         """Return the questions text as a string."""
         return self._questiontext
 
-    def accept_multiple_answers(self, newacceptableanswer):
-        """Append new answer into the list of correct answers."""
-        self._correctans.append(newacceptableanswer.toUpper())
+    def accept_multiple_answers(self, answerkey, display=None):
+        """Append new answer into the list of correct answers.
+        answerkey -- the correct
+        explanation -- an explanation of why the answer is right
+        """
+        self._answers[answerkey] = {"display": display}
 
     def remove_an_answer(self, invalid, replacement=None):
         """Allow quiz maker to remove or remove an answer.
@@ -154,9 +159,7 @@ class Question:
         invalid -- string
         replacement -- string
         """
-        if replacement is not None:
-            self._correctans.append(replacement.toUpper())
-        self._correctans.remove(invalid)
+        pass
 
 
 class MultipleChoice(Question):
@@ -195,11 +198,4 @@ class FillInTheBlank(Question):
         new -- string
         """
         self._wordbank.append(newword)
-
-    def add_list_to_wordbank(self, listofwords):
-        """Add a list of words to wordbank.
-
-        listofwords -- list
-        """
-        for words in listofwords:
-            self._wordbank.append(words.toUpper())
+        
