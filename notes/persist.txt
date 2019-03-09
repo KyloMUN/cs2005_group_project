@@ -13,6 +13,3 @@ storage.get_completed_quiz_by_quiz_id(-quiz_in_progess_id-)
 storage.get_completed_quiz_by_student_id(-student_id-)
 
 storage.get_completed_quiz_by_class_id(-class_id-)
-
-
-
