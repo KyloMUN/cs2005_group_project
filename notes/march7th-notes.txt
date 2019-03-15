@@ -22,7 +22,7 @@ Public Data Structures
  fields:
   - id: shortid
 
-- Class 
+- Class
  fields:
   - id: shortid
   - quizes: List<QuizesInProgress>
@@ -37,4 +37,3 @@ QuizSession
 QuestionWithData(Question):
  fields:
   - picked: [key]
-
