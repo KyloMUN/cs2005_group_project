@@ -4,9 +4,13 @@
 Since the assignment has been assigned our group has met together multiple times to discuss the structure of different objects/methods we want our classes to have.
 
 Olmstead, Kyle (kolmstead@mun.ca)
+
 Huang, Xiaochuan (xh6634@mun.ca)
+
 Shevchenko, Arsenii (ashevchenko@mun.ca)
+
 Langer, Aidan (aplanger@mun.ca)
+
 Harrhy, Jack (jaharrhy@mun.ca)
 
 # Programming Component & Module Design
@@ -71,7 +75,7 @@ q = Quiz(...)
 
 print(q.id) # -> "123abc"
 
-persist.store(Quiz, q)
+persist.store(q)
 ```
 
 Sometime later, even after a reboot of the application
@@ -92,7 +96,7 @@ The diagram below does most of the speaking for what the purpose of the Persiste
 
 # Use Case
 
-## Title: foobar
+## Title: Creating and logging into the application
 
 ## Primary Actor: Professor
 
