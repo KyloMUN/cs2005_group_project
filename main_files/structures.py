@@ -1,10 +1,8 @@
-"""Structures
+"""structures.py.
 
-Shared classes that creates objects used throughout the application.
+Shared classes that create objects used throughout the application.
 """
-
 import shortuuid
-import datetime
 
 
 def _new_id():
@@ -12,7 +10,10 @@ def _new_id():
 
 
 class User:
-    def __init__(self, username: str, password: str, role: str, realname: str = None):
+    """Defines the properties of a User within the system."""
+
+    def __init__(self, username: str, password: str, role: str,
+                 realname: str = None):
         """Create a User.
 
         Keyword arguments:
@@ -30,9 +31,8 @@ class User:
         self.classes = []
         self.question_banks = []
 
-
     def is_role(self, role: str) -> bool:
-        """Return true if the user is the given role
+        """Return true if the user is the given role.
 
         Keyword arguments:
         role -- role to verify if is User instance
@@ -41,6 +41,8 @@ class User:
 
 
 class Quiz:
+    """Defines the properties of a Quiz professors can create and users can take."""
+
     def __init__(self, name: str, attempts_permitted: int = 1):
         """Create a Quiz.
 
@@ -61,7 +63,8 @@ class Quiz:
 
 
 class Class:
-    """Create Class objects."""
+    """Defines the properties of a Class professors can create and users can be enrolled in."""
+
     def __init__(self, classname: str, teacher: str):
         """Create a Class.
 
@@ -78,6 +81,8 @@ class Class:
 
 
 class Question:
+    """Defines the properties of a Question professors can create and users can answer."""
+
     def __init__(self, display: str, points: int):
         """Create a Question.
 
@@ -92,9 +97,8 @@ class Question:
         self.choices = {}
         self.picked = []
 
-
     def is_answer(self, key: str) -> bool:
-        """Return true if the given key is an answer
+        """Return true if the given key is an answer.
 
         Keyword arguments:
         key -- key to verify if is answer
@@ -103,6 +107,8 @@ class Question:
 
 
 class QuestionBank:
+    """Defines the properties of a QuestionBank professors can create and refer to later."""
+
     def __init__(self):
         """Create a QuestionBank."""
         self.id = _new_id()

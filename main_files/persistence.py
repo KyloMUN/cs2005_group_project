@@ -7,7 +7,6 @@ import atexit
 import os
 import shelve
 from typing import TypeVar
-from structures import User, Quiz, Class, Question, QuestionBank
 
 T = TypeVar('T')
 
@@ -16,8 +15,10 @@ _storage_dir = "persistence_store"
 if not os.path.exists(_storage_dir):
     os.makedirs(_storage_dir)
 
+
 def _new_shelf(filename):
-    return shelve.open(os.path.realpath(os.path.join(_storage_dir, filename)), writeback=True)
+    local_path = os.path.join(_storage_dir, filename)
+    return shelve.open(os.path.realpath(local_path), writeback=True)
 
 
 class Persistence:
@@ -33,7 +34,6 @@ class Persistence:
     def _wipe(self):
         self._shelf.clear()
 
-
     def __init__(self, filename: str = None):
         """Create a persistence interface.
 
@@ -46,11 +46,9 @@ class Persistence:
         else:
             self._shelf = Persistence._shared_shelf_instance
 
-
     def _ensure_structure_dict(self, structure_name):
-        if not structure_name in self._shelf:
+        if structure_name not in self._shelf:
             self._shelf[structure_name] = {}
-
 
     def store(self, structure: T) -> None:
         """Store a given structure.
@@ -61,7 +59,6 @@ class Persistence:
         structure_name = structure.__class__.__name__
         self._ensure_structure_dict(structure_name)
         self._shelf[structure_name][structure.id] = structure
-
 
     def retrieve(self, structure: T, structure_id: str) -> T:
         """Retrieve a structure.
@@ -75,12 +72,14 @@ class Persistence:
         if structure_id in self._shelf[structure_name]:
             return self._shelf[structure_name][structure_id]
 
+
 atexit.register(Persistence._cleanup)
 
 if __name__ == "__main__":
-    p = Persistence()
+    p = Persistence("persist_test")
     p._wipe()
 
+    from structures import User
     p.store(User("jackharrhy", "nice meme", "student"))
 
     print(p._shelf["User"].keys())
