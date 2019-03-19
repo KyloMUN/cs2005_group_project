@@ -26,7 +26,7 @@ class User:
         self.roles = [role]
         self.realname = realname
 
-        self.id = _new_id()
+        self.id = username
         self.classes = []
         self.question_banks = []
 

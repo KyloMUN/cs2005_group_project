@@ -9,7 +9,7 @@ import shelve
 from structures import User, Quiz, Class, Question, QuestionBank
 
 class Persistence:
-    __shelf_instance = shelve.open("storage.dat")
+    __shelf_instance = shelve.open("storage.dat", writeback=True)
 
     @staticmethod
     def cleanup():
@@ -34,8 +34,7 @@ class Persistence:
         """
         structure_name = structure.__class__.__name__
         self._ensure_structure_dict(structure_name)
-        structure_store = self._shelf[structure_name]
-        structure_store[structure.id] = structure
+        self._shelf[structure_name][structure.id] = structure
 
 
     def retrive(self, structure, structure_id):
@@ -58,8 +57,5 @@ if __name__ == "__main__":
     u = User("jackharrhy", "nice meme", "student")
 
     p.store(u)
-
-    print(p._shelf.keys())
-
     un = p.retrive(User, u.id)
     print(un)

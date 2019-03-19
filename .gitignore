@@ -1,3 +1,4 @@
-.pyc
-.swp
+*.pyc
+*.swp
+*.dat
 __pycache__
