@@ -3,13 +3,12 @@
 Shared classes that creates objects used throughout the application.
 """
 
-#import shortuuid
+import shortuuid
 import datetime
 
 
 def _new_id():
-    return "123abc" # will uncomment for real application
-    #return shortuuid.uuid()
+    return shortuuid.uuid()
 
 
 class User:
@@ -79,20 +78,19 @@ class Class:
 
 
 class Question:
-    def __init__(self, display: str):
+    def __init__(self, display: str, points: int):
         """Create a Question.
 
         Keyword arguments:
         display -- text to display
         """
         self.display = display
+        self.points = points
 
         self.id = _new_id()
         self.answers = {}
         self.choices = {}
         self.picked = []
-        self.allowed_selections = allowedselections
-        self.points = value
 
 
     def is_answer(self, key: str) -> bool:

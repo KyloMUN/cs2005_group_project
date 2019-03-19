@@ -17,26 +17,26 @@ class TestPersistence(unittest.TestCase):
     def test_persistence_store_user(self):
         new_user = User('foobar', 'baz', 'student')
         storage.store(new_user)
-        same_user = storage.retrive(new_user.id)
+        same_user = storage.retrive(User, new_user.id)
         self.assertIsNotNone(same_user)
-        self.assertIsInstance(same_quiz, User)
+        self.assertIsInstance(same_user, User)
 
     def test_persistence_retrive_user_fail(self):
         invalid_id = "abc123"
-        user = storage.retrive(invalid_id)
+        user = storage.retrive(User, invalid_id)
         self.assertIsNone(user)
 
     def test_persistence_store_quiz(self):
         new_quiz = Quiz('foobar', 10)
         storage.store(new_quiz)
-        same_quiz = storage.retrive(new_quiz.id)
+        same_quiz = storage.retrive(Quiz, new_quiz.id)
         self.assertIsNotNone(same_quiz)
         self.assertIsInstance(new_quiz, Quiz)
 
     def test_persistence_retrive_quiz_fail(self):
         invalid_id = "abc123"
-        quiz = storage.retrive(invalid_id)
-        self.assertIsNone(user)
+        quiz = storage.retrive(Quiz, invalid_id)
+        self.assertIsNone(quiz)
 
 
 if __name__ == '__main__':
