@@ -1,4 +1,5 @@
-"""This interacts with the Quiz and Question objects. Class CreateQuiz
+"""This interacts with the Quiz and Question objects. Class CreateQuiz.
+
 creates a new quiz object with the default attributes defined in the Quiz
 object class. Methods to add the start time, end time, time limit and
 questions to the quiz are provided in this class.
@@ -62,16 +63,14 @@ class Create:
     # methods relating to question bank
 
     def add_all_quiz_questions_to_bank(self, qbank):
-        """Add all the questions from this quiz to the question bank for this
-        course.
+        """Add all the questions from this quiz to the question bank for this course.
 
         course_id -- course uuid
         """
         pass
 
     def add_random_question_from_bank_to_quiz(self, qbank):
-        """Get a random question from the question bank and add it to
-        the quiz.
+        """Get a random question from the question bank and add it to the quiz.
 
         course_id -- course uuid
         """
