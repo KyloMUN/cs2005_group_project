@@ -1,5 +1,5 @@
 """Entrypoint for the entire application."""
-from flask import Flask, abort, request, jsonify, Response
+from flask import Flask, abort, request, jsonify, Response, send_from_directory
 from flask_jwt import JWT, jwt_required, current_identity
 
 from authentication import Authentication
@@ -38,6 +38,37 @@ app.config['JWT_AUTH_URL_RULE'] = '/login'
 
 jwt = JWT(app, _authenticate, _identity)
 
+@app.after_request
+def apply_caching(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Credentials', 'true')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
+    response.headers.add('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers')
+    return response
+
+@app.route('/')
+@app.route('/home')
+@app.route('/login')
+@app.route('/account')
+def send_static_homepage():
+    return send_from_directory('static', 'index.html')
+
+@app.route('/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
+
+@app.route('/static/<path:path>')
+def send_static_static(path):
+    return send_from_directory('static/static', path)
+
+@app.route('/static/js/<path:path>')
+def send_static_static_js(path):
+    return send_from_directory('static/static/js', path)
+
+@app.route('/whoami')
+@jwt_required()
+def whoami():
+    return jsonify(vars(current_identity))
 
 @app.route('/new/user', methods=["POST"])
 @jwt_required()
