@@ -2,9 +2,13 @@
 const apiUrl = 'http://localhost:5000';
 
 const api = {
-  async get(endpoint) {
+  async get(endpoint, {token}) {
     try {
-      const response = await fetch(`${apiUrl}/${endpoint}`);
+      const response = await fetch(`${apiUrl}/${endpoint}`, {
+        headers: {
+          'Authorization': `JWT ${token}`
+        },
+      });
       return await response.json();
     } catch (err) {
       console.error(err);

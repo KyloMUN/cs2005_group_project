@@ -11,9 +11,12 @@ from structures import User
 class Authentication:
     """Manage the creation, authentication, and changing of a user."""
 
-    def __init__(self):
+    def __init__(self, persist=None):
         """Create a Authentication instance."""
-        self._persist = Persistence()
+        if not persist:
+            self._persist = Persistence()
+        else:
+            self._persist = persist
 
     def _hash_password(self, password):
         salt = uuid.uuid4().hex
@@ -66,13 +69,26 @@ class Authentication:
         """
         return self._persist.retrieve(User, username)
 
-    def change_password(self, username: str, new_password: str) -> dict:
+    def change_password(self, username: str, old_password: str, new_password: str) -> dict:
         """Change a users password.
 
         Keyword arguments:
         username -- unique identifier for a user
-        password -- users password
+        old_password -- users existing password
+        new_password -- users password requested password
         """
+        user = self._persist.retrieve(User, username)
+
+        if not user:
+            return {"success": False, "message": "User doesn't exist."}
+
+        if not self._check_password(user.password, password):
+            return {"success": False, "message": "Invalid password."}
+
+        new_hashed_password = self._hash_password(new_password)
+        user.password = new_hashed_password
+        self._persist.store(user)
+
         return {"success": True}
 
 

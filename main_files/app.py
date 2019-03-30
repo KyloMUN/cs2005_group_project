@@ -43,7 +43,7 @@ def apply_caching(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Credentials', 'true')
     response.headers.add('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
-    response.headers.add('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers')
+    response.headers.add('Access-Control-Allow-Headers', '*')
     return response
 
 @app.route('/')
@@ -68,7 +68,9 @@ def send_static_static_js(path):
 @app.route('/whoami')
 @jwt_required()
 def whoami():
-    return jsonify(vars(current_identity))
+    user_info = dict(vars(current_identity))
+    user_info.pop('password')
+    return jsonify(user_info)
 
 @app.route('/new/user', methods=["POST"])
 @jwt_required()

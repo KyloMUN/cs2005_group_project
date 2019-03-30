@@ -7,15 +7,17 @@ class FakePersist:
         self.structure = None
         self.structure_instance = None
         self.structure_id = None
+        self.custom_retrieve_value = None
 
-
-    def store(structure):
+    def store(self, structure):
         self.structure = structure
 
-
-    def retrive(structure, structure_id):
+    def retrieve(self, structure, structure_id):
         self.structure = structure
         self.structure_id = structure_id
+
+        if self.custom_retrieve_value:
+            return self.custom_retrieve_value
 
 
 class TestAuthentication(unittest.TestCase):
@@ -23,48 +25,46 @@ class TestAuthentication(unittest.TestCase):
         auth = Authentication(FakePersist())
         self.assertIsNotNone(auth)
 
-
     def test_authentication_add_user(self):
-        auth = Authentication(FakePersist())
-        auth.add_user('foobar', 'baz')
-        self.assertIsInstance(User, FakePersist.structure)
-
+        fake_persist = FakePersist()
+        auth = Authentication(fake_persist)
+        auth.add_user('foobar', 'baz', 'professor')
+        self.assertIsInstance(fake_persist.structure, User)
 
     def test_authentication_add_user_twice_fail(self):
         auth = Authentication(FakePersist())
-        auth.add_user('foobar', 'baz')
-        self.assertRaises(ValueError, auth.add_user('foobar', 'baz'))
-
+        auth.add_user('foobar', 'baz', 'student')
+        self.assertDictEqual(auth.add_user('foobar', 'baz', 'student'), {})
 
     def test_authentication_login(self):
         auth = Authentication(FakePersist())
-        auth.add_user('foobar', 'baz')
-        self.assertIsInstance(dict, auth.login('foobar', 'baz'))
-
+        auth.add_user('foobar', 'baz', 'professor')
+        self.assertDictEqual(auth.login('foobar', 'baz'), {})
 
     def test_authentication_login_wrong_password_fail(self):
         auth = Authentication(FakePersist())
-        auth.add_user('foobar', 'baz')
-        self.assertIsInstance(dict, auth.login('foobar', 'wrong_password'))
-
+        auth.add_user('wobble', 'spam', 'student')
+        self.assertDictEqual(auth.login('wobble', 'wrong_password'), {})
 
     def test_authentication_login_unknown_user_fail(self):
         auth = Authentication(FakePersist())
-        self.assertIsNone(auth.login('foobar', 'baz'))
-
+        self.assertDictEqual(
+            auth.login('foobar', 'baz'),
+            {"success": False, "message": "User doesn't exist."}
+        )
 
     def test_authentication_change_password(self):
         auth = Authentication(FakePersist())
-        auth.add_user('foobar', 'baz')
+        auth.add_user('foobar', 'baz', 'student')
         auth.login('foobar', 'baz')
-        self.assertIsInstance(dict, auth.change_password('foobar', 'qux'))
-
+        self.assertDictEqual(auth.change_password('foobar', 'qux'), {})
 
     def test_authentication_change_password_fail(self):
-        auth = Authentication(FakePersist())
-        auth.add_user('foobar', 'baz')
-        auth.login('wrong', 'account')
-        self.assertRaises(ValueError, auth.change_password('foobar', 'qux'))
+        fake_persist = FakePersist()
+        fake_persist.custom_retrieve_value = {}
+        auth = Authentication(fake_persist)
+        auth.add_user('foobar', 'baz', 'student')
+        self.assertDictEqual(auth.change_password('foobar', 'qux', 'wobble'), {})
 
 
 if __name__ == '__main__':

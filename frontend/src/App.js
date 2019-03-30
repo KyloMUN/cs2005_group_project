@@ -4,7 +4,6 @@ import {
   Heading,
   Grommet,
   Button,
-  TextInput,
 } from 'grommet';
 import {
   Menu,
@@ -14,8 +13,14 @@ import {
   Route,
 } from 'react-router-dom';
 import {createBrowserHistory} from 'history';
+import {Provider} from 'react-redux';
 
-import api from './api';
+import {
+  AccountPage,
+  HomePage,
+  LoginPage,
+  LogoutPage,
+} from './pages';
 
 const history = createBrowserHistory();
 
@@ -48,128 +53,9 @@ const AppBar = (props) => (
   />
 );
 
-class HomePage extends Component {
-  render() {
-    return (
-      <>
-        Homepage
-      </>
-    );
-  }
-}
-
-class LogoutPage extends Component {
-  componentWillMount() {
-    this.props.setToken(null);
-    history.push('/login');
-  }
-
-  render() {
-    return (
-      <>
-        Logout
-      </>
-    );
-  }
-}
-
-class AccountPage extends Component {
-  componentWillMount() {
-    if (this.props.token === null) {
-      history.push('/login');
-    }
-  }
-
-  async componentDidMount() {
-    const response = await api.get('whoami');
-
-    console.log(response);
-  }
-
-  render() {
-    return (
-      <>
-        Account
-      </>
-    );
-  }
-}
-
-class LoginPage extends Component {
-  state = {
-    username: '',
-    password: '',
-  }
-
-  componentWillMount() {
-    if (this.props.token !== null) {
-      history.push('/account');
-    }
-  }
-
-  handleUsernameChange = (e) => {
-    this.setState({username: e.target.value});
-  };
-  handlePasswordChange = (e) => {
-    this.setState({password: e.target.value});
-  };
-  handleLogin = async () => {
-    const {username, password} = this.state;
-    const response = await api.post('login', {username, password});
-
-    if (response.access_token !== undefined) {
-      this.props.setToken(response.access_token);
-      history.push('/account');
-    }
-  };
-
-  render() {
-    return (
-      <>
-        <Box
-          pad='large'
-          align='center'
-          background={{ color: 'light-1', opacity: 'strong' }}
-          round
-          gap='small'
-        >
-          <TextInput
-            placeholder='Username'
-            value={this.state.username}
-            onChange={this.handleUsernameChange}
-          />
-          <TextInput
-            type='password'
-            placeholder='Password'
-            value={this.state.password}
-            onChange={this.handlePasswordChange}
-          />
-          <Button
-            label="Login"
-            onClick={this.handleLogin}
-          />
-        </Box>
-      </>
-    );
-  }
-}
-
 class App extends Component {
   state = {
     showSidebar: false,
-    token: null,
-  }
-
-  setToken = (token) => {
-    this.setState({token});
-  }
-
-  wrappedLoginPage = () => {
-    return <LoginPage token={this.state.token} setToken={this.setToken} />
-  };
-
-  wrappedLogoutPage = () => {
-    return <LogoutPage setToken={this.setToken} />
   }
 
   render() {
@@ -189,8 +75,8 @@ class App extends Component {
             <Box direction='row' flex overflow={{horizontal: 'hidden'}}>
               <Box flex align='center' justify='center'>
                 <Route path='/' exact component={HomePage} />
-                <Route path='/login' component={this.wrappedLoginPage} />
-                <Route path='/logout' component={this.wrappedLogoutPage} />
+                <Route path='/login' component={LoginPage} />
+                <Route path='/logout' component={LogoutPage} />
                 <Route path='/account' component={AccountPage} />
               </Box>
               {this.state.showSidebar && (
