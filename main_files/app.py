@@ -41,9 +41,9 @@ jwt = JWT(app, _authenticate, _identity)
 @app.after_request
 def apply_caching(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', '*')
     response.headers.add('Access-Control-Allow-Credentials', 'true')
     response.headers.add('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
-    response.headers.add('Access-Control-Allow-Headers', '*')
     return response
 
 @app.route('/')

@@ -1,13 +1,19 @@
+import {push} from 'react-router-redux';
 import {
   put,
   takeLatest,
-  call
+  call,
+  all,
 } from 'redux-saga/effects';
 
-import {LOGIN_SAGA} from '../../constants';
+import {
+  LOGIN_SAGA,
+  LOGOUT_SAGA,
+} from '../../constants';
 import {
   loginSagaSuccess,
-  loginSagaFailed
+  loginSagaFailed,
+  clearWhoami,
 } from '../../actions';
 import {login} from '../../lib/api';
 
@@ -18,16 +24,23 @@ function* workerLoginSaga(username, password) {
     const token = response.access_token;
     if (token !== undefined) {
       yield put(loginSagaSuccess(token));
+      yield put(push('/account'));
     }
     else {
-      yield put(loginSagaFailed());
+      yield put(loginSagaFailed(response));
     }
   } catch (err) {
-    console.error(err);
-    yield put(loginSagaFailed());
+    yield put(loginSagaFailed(err));
   }
 }
 
+function* workerLogoutSaga() {
+  yield put(clearWhoami());
+}
+
 export default function* watchLoginSaga() {
-  yield takeLatest(LOGIN_SAGA, workerLoginSaga);
+  yield all([
+    takeLatest(LOGIN_SAGA, workerLoginSaga),
+    takeLatest(LOGOUT_SAGA, workerLogoutSaga)
+  ]);
 }
