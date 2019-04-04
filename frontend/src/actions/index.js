@@ -9,10 +9,6 @@ import {
   GET_WHOAMI_SUCCESS,
   GET_WHOAMI_FAIL,
 
-  SET_WHOAMI_SAGA,
-  SET_WHOAMI_SUCCESS,
-  SET_WHOAMI_FAIL,
-
   CLEAR_WHOAMI,
 } from '../constants';
 
