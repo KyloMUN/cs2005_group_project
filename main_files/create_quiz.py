@@ -8,7 +8,8 @@ from persistence import Persistence
 from structures import Question, Quiz, QuestionBank
 from random import randint
 
-class Create:
+
+class CreateQuiz:
     """Interface for quiz creation."""
 
     def __init__(self, quizname, num_of_attempts):
@@ -47,7 +48,10 @@ class Create:
     def pass_to_storage(self):
         """Pass a quiz object to persistance for storage."""
         self.persist.store(self.quiz)
-        
+    
+    def get_id(self):
+        return self.quiz.id
+
     def add_question(self, questiontext, points, answerdict, choicesdict):
         """Stub implementation of adding a question object to quiz.
 
@@ -59,18 +63,17 @@ class Create:
         myquestion = Question(questiontext, points)
         myquestion.answers = answerdict
         myquestion.choices = choicesdict
-        self.quiz.questions.append(myquestion)
-        
 
-    # methods relating to question bank
-   
+        self.quiz.questions.append(myquestion)
+
     def add_all_questions_to_bank(self):
         """Add a question to the question bank of this course id."""
         tempbank = []
         for questions in self.quiz.questions:
             tempbank.append(questions)
         Persistence.store(tempbank, QuestionBank)
-    
+
     def get_random_question_from_bank(self, course_id):
+        """Add a random question from the bank to the quiz."""
         qbank = self.persist.retrieve(QuestionBank, course_id)
         return qbank[randint(0, len(qbank)-1)]

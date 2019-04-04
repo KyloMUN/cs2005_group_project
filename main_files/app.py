@@ -3,6 +3,7 @@ from flask import Flask, abort, request, jsonify, Response, send_from_directory
 from flask_jwt import JWT, jwt_required, current_identity
 
 from authentication import Authentication
+from create_quiz import CreateQuiz
 
 auth = Authentication()
 
@@ -91,3 +92,40 @@ def _new_user():
         return Response(status=204)
     else:
         abort(Response(auth_result["message"], 400))
+
+@app.route('/new/quiz', methods=["POST"])
+@jwt_required()
+def _create_quiz():
+    if not current_identity.is_role("professor"):
+        abort(403)
+    data = request.get_json()
+    thequiz = CreateQuiz(
+        data["quizname"],
+        data["numattempts"]
+    )
+    thequiz.add_start_time(
+        data["syear"],
+        data["smonth"],
+        data["sday"],
+        data["shour"],
+        data["smin"]
+    )
+    thequiz.add_end_time(
+        data["eyear"],
+        data["emonth"],
+        data["eday"],
+        data["ehour"],
+        data["emin"]
+    )
+    thequiz.add_time_limit(data["timelimit"])
+    questions = data["questions"]  # this is a list
+    for question in questions:
+        thequiz.add_question(
+            question["questiontext"],
+            question["points"],
+            question["answerdict"],
+            question["choicesdict"]
+        )
+    thequiz.add_all_questions_to_bank()
+    thequiz.pass_to_storage()
+    return thequiz.get_id()
