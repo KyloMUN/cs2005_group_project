@@ -5,6 +5,10 @@ import {
 
   LOGOUT_SAGA,
 
+  CREATE_NEW_USER_SAGA,
+  CREATE_NEW_USER_SUCCESS,
+  CREATE_NEW_USER_FAIL,
+
   GET_WHOAMI_SAGA,
   GET_WHOAMI_SUCCESS,
   GET_WHOAMI_FAIL,
@@ -39,6 +43,16 @@ export function loginSagaFailed(err) {
 export function logoutSaga() {
   return {
     type: LOGOUT_SAGA,
+  };
+}
+
+export function createNewUserSaga(token, username, password, role) {
+  return {
+    type: CREATE_NEW_USER_SAGA,
+    token,
+    username,
+    password,
+    role,
   };
 }
 

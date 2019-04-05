@@ -11,19 +11,19 @@ manage_classes = ManageClasses()
 
 # FOR DEV PURPOSES
 #auth._persist._shelf.clear()
-#auth.add_user("jackharrhy", "foobar123", "student")
-#auth.add_user("barab", "finite", "professor")
-print(auth._persist._shelf["User"])
+#auth.add_user('jackharrhy', 'foobar123', 'student')
+#auth.add_user('barab', 'finite', 'professor')
+print(auth._persist._shelf['User'])
 # FOR DEV PURPOSES
 
 
 def _authenticate(username, password):
-    print("auth", username, password)
+    print('auth', username, password)
     auth_result = auth.login(username, password)
 
-    if auth_result["success"]:
+    if auth_result['success']:
         print('success', auth_result)
-        return auth_result["user"]
+        return auth_result['user']
     else:
         print('fail', auth_result)
 
@@ -155,39 +155,44 @@ def _change_password():
     else:
         return Response(auth_result['message'], status=400)
 
-@app.route('/new/quiz', methods=["POST"])
+@app.route('/api/quiz', methods=['POST'])
 @jwt_required()
 def _create_quiz():
-    if not current_identity.is_role("professor"):
+    if not current_identity.is_role('professor'):
         abort(403)
+
     data = request.get_json()
-    thequiz = CreateQuiz(
-        data["quizname"],
-        data["numattempts"]
+
+    new_quiz = CreateQuiz(
+        data['quizname'],
+        data['numattempts']
     )
-    thequiz.add_start_time(
-        data["syear"],
-        data["smonth"],
-        data["sday"],
-        data["shour"],
-        data["smin"]
+    new_quiz.add_start_time(
+        data['syear'],
+        data['smonth'],
+        data['sday'],
+        data['shour'],
+        data['smin']
     )
-    thequiz.add_end_time(
-        data["eyear"],
-        data["emonth"],
-        data["eday"],
-        data["ehour"],
-        data["emin"]
+    new_quiz.add_end_time(
+        data['eyear'],
+        data['emonth'],
+        data['eday'],
+        data['ehour'],
+        data['emin']
     )
-    thequiz.add_time_limit(data["timelimit"])
-    questions = data["questions"]  # this is a list
+    new_quiz.add_time_limit(data['timelimit'])
+
+    questions = data['questions']
     for question in questions:
-        thequiz.add_question(
-            question["questiontext"],
-            question["points"],
-            question["answerdict"],
-            question["choicesdict"]
+        new_quiz.add_question(
+            question['questiontext'],
+            question['points'],
+            question['answerdict'],
+            question['choicesdict']
         )
-    thequiz.add_all_questions_to_bank()
-    thequiz.pass_to_storage()
-    return thequiz.get_id()
+
+    new_quiz.add_all_questions_to_bank()
+    new_quiz.pass_to_storage()
+
+    return new_quiz.get_id()
