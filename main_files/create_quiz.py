@@ -8,6 +8,7 @@ class Create:
     a new quiz, and the methods to add the start time, end time, time
     limit and questions to the quiz are provided in this class.
     """
+
     def __init__(self, quizname, num_of_attempts):
         """This method initializes a new Quiz object with the basic
         attributes, a name and the number of alloted attempts. This is
@@ -71,7 +72,10 @@ class Create:
         every attribute is set or not, thus allowing quiz modification in
         the future."""
         self.persist.store(self.quiz)
-        
+    
+    def get_id(self):
+        return self.quiz.id
+
     def add_question(self, questiontext, points, answerdict, choicesdict):
         """This method is a wrapper for the Question class in the structures
         module. It sets attributes of a question, which are filled by the user
@@ -85,6 +89,7 @@ class Create:
         myquestion = Question(questiontext, points)
         myquestion.answers = answerdict
         myquestion.choices = choicesdict
+
         self.quiz.questions.append(myquestion)
 
     def add_all_questions_to_bank(self):

@@ -5,15 +5,17 @@ import {
 
   LOGOUT_SAGA,
 
+  CREATE_NEW_USER_SAGA,
+  CREATE_NEW_USER_SUCCESS,
+  CREATE_NEW_USER_FAIL,
+
   GET_WHOAMI_SAGA,
   GET_WHOAMI_SUCCESS,
   GET_WHOAMI_FAIL,
 
-  SET_WHOAMI_SAGA,
-  SET_WHOAMI_SUCCESS,
-  SET_WHOAMI_FAIL,
-
   CLEAR_WHOAMI,
+
+  CHANGE_PASSWORD_SAGA,
 } from '../constants';
 
 export function loginSaga(username, password) {
@@ -44,6 +46,16 @@ export function logoutSaga() {
   };
 }
 
+export function createNewUserSaga(token, username, password, role) {
+  return {
+    type: CREATE_NEW_USER_SAGA,
+    token,
+    username,
+    password,
+    role,
+  };
+}
+
 export function getWhoamiSaga(token) {
   return {
     type: GET_WHOAMI_SAGA,
@@ -69,4 +81,12 @@ export function clearWhoami() {
   return {
     type: CLEAR_WHOAMI,
   }
+}
+
+export function changePasswordSaga(oldPassword, newPassword) {
+  return {
+    type: CHANGE_PASSWORD_SAGA,
+    oldPassword,
+    newPassword,
+  };
 }

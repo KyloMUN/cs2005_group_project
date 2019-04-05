@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<form action='/quiz' method='POST'>
+   <body>
+	<h1>  Quiz stub </h1>
+      <ol>
+         {% for key, val in result.items() %}
+            <tr>
+               <h2> {{ key }} </h2>
+		 {% for i in val %}
+               <input type='radio' value='{{i}}' name='{{val}}' />{{i}}
+		{% endfor %}
+            </tr>
+         {% endfor %}
+      </ol>
+	<input type="Submit" value="Submit" />
+	
+ 
+   </form>
+   <form action='/pause' method='POST'>
+       <input type="Submit" value="Pause" />
+      </form>
+  </body>
+</html>

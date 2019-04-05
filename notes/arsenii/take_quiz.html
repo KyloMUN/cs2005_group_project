@@ -1,0 +1,111 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module take_quiz</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>take_quiz</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/arsenii/Documents/cs2005/assign6/check/take_quiz.py">/home/arsenii/Documents/cs2005/assign6/check/take_quiz.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="datetime.html">datetime</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="take_quiz.html#QuizInProgress">QuizInProgress</a>
+</font></dt><dt><font face="helvetica, arial"><a href="take_quiz.html#TakingQuiz">TakingQuiz</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="QuizInProgress">class <strong>QuizInProgress</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;new&nbsp;quiz&nbsp;in&nbsp;progress<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="QuizInProgress-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>quiz_id&nbsp;-&nbsp;id&nbsp;quiz<br>
+quiz_in_progress&nbsp;-&nbsp;quiz&nbsp;is&nbsp;taking<br>
+attemps&nbsp;-&nbsp;number&nbsp;of&nbsp;attempts<br>
+quiz_answer&nbsp;-&nbsp;dict&nbsp;with&nbsp;key&nbsp;(id&nbsp;of&nbsp;question)&nbsp;value:&nbsp;students&nbsp;answer<br>
+complete&nbsp;-&nbsp;checking&nbsp;if&nbsp;quiz&nbsp;is&nbsp;completed<br>
+quest_set&nbsp;-&nbsp;dict&nbsp;with&nbsp;key&nbsp;question,&nbsp;values&nbsp;option&nbsp;for&nbsp;question</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-checkAttempts"><strong>checkAttempts</strong></a>(self)</dt><dd><tt>Checks&nbsp;number&nbsp;of&nbsp;attemps</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-checkTimeLimit"><strong>checkTimeLimit</strong></a>(self)</dt><dd><tt>Checks&nbsp;time&nbsp;limit</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getComplete"><strong>getComplete</strong></a>(self)</dt><dd><tt>return&nbsp;complete&nbsp;status</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getQuestSize"><strong>getQuestSize</strong></a>(self)</dt><dd><tt>Returns&nbsp;size&nbsp;of&nbsp;question&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getQuestion"><strong>getQuestion</strong></a>(self, index)</dt><dd><tt>Return&nbsp;question&nbsp;by&nbsp;index<br>
+parametr:&nbsp;index</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getQuestionOptions"><strong>getQuestionOptions</strong></a>(self, index)</dt><dd><tt>Return&nbsp;option&nbsp;of&nbsp;answer&nbsp;for&nbsp;question&nbsp;by&nbsp;index<br>
+parametr:&nbsp;index</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getQuestionText"><strong>getQuestionText</strong></a>(self, index)</dt><dd><tt>Return&nbsp;question&nbsp;text&nbsp;by&nbsp;index<br>
+parametr:&nbsp;index</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getQuestions"><strong>getQuestions</strong></a>(self)</dt><dd><tt>returns&nbsp;a&nbsp;dict&nbsp;with&nbsp;of&nbsp;questions&nbsp;and&nbsp;options&nbsp;of&nbsp;answer</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getQuizAnswer"><strong>getQuizAnswer</strong></a>(self)</dt><dd><tt>Returns&nbsp;quiz&nbsp;answers</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-getQuizId"><strong>getQuizId</strong></a>(self)</dt><dd><tt>returns&nbsp;id&nbsp;of&nbsp;quiz</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-get_quest_id"><strong>get_quest_id</strong></a>(self, index)</dt><dd><tt>Return&nbsp;question&nbsp;id&nbsp;for&nbsp;each&nbsp;answer<br>
+parametr:&nbsp;index</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-incrAttempts"><strong>incrAttempts</strong></a>(self)</dt><dd><tt>Increment&nbsp;number&nbsp;of&nbsp;attemps</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-loadQuiz"><strong>loadQuiz</strong></a>(self, quiz)</dt><dd><tt>Load&nbsp;quiz&nbsp;from&nbsp;persist&nbsp;storage</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-pause"><strong>pause</strong></a>(self)</dt><dd><tt>Pause&nbsp;quiz.&nbsp;Save&nbsp;to&nbsp;persist&nbsp;storage</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-setAnswer"><strong>setAnswer</strong></a>(self, quest_id, answer)</dt><dd><tt>Adds&nbsp;answer&nbsp;to&nbsp;dict&nbsp;of&nbsp;answers<br>
+parametrs:&nbsp;quest_id&nbsp;-&nbsp;id&nbsp;of&nbsp;a&nbsp;question<br>
+answer</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-setComplete"><strong>setComplete</strong></a>(self)</dt><dd><tt>set&nbsp;complete&nbsp;as&nbsp;true</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-setQuestions"><strong>setQuestions</strong></a>(self)</dt><dd><tt>returns&nbsp;a&nbsp;dict&nbsp;with&nbsp;of&nbsp;questions&nbsp;and&nbsp;options&nbsp;of&nbsp;answer</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-setQuizId"><strong>setQuizId</strong></a>(self, newid)</dt><dd><tt>set&nbsp;id&nbsp;of&nbsp;quiz</tt></dd></dl>
+
+<dl><dt><a name="QuizInProgress-submit"><strong>submit</strong></a>(self)</dt><dd><tt>Submit&nbsp;quiz&nbsp;to&nbsp;persist&nbsp;storage</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TakingQuiz">class <strong>TakingQuiz</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;Taking&nbsp;Quiz<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TakingQuiz-__init__"><strong>__init__</strong></a>(self, QuizInPr)</dt></dl>
+
+<dl><dt><a name="TakingQuiz-pause"><strong>pause</strong></a>(self)</dt><dd><tt>Pause&nbsp;quiz.&nbsp;Save&nbsp;to&nbsp;persist&nbsp;storage</tt></dd></dl>
+
+<dl><dt><a name="TakingQuiz-submit"><strong>submit</strong></a>(self)</dt><dd><tt>Submit&nbsp;quiz&nbsp;to&nbsp;persist&nbsp;storage</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
