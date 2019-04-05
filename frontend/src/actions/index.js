@@ -9,6 +9,10 @@ import {
   CREATE_NEW_USER_SUCCESS,
   CREATE_NEW_USER_FAIL,
 
+  CREATE_QUIZ_SAGA,
+  CREATE_QUIZ_SUCCESS,
+  CREATE_QUIZ_FAIL,
+
   GET_WHOAMI_SAGA,
   GET_WHOAMI_SUCCESS,
   GET_WHOAMI_FAIL,
@@ -88,5 +92,11 @@ export function changePasswordSaga(oldPassword, newPassword) {
     type: CHANGE_PASSWORD_SAGA,
     oldPassword,
     newPassword,
+  };
+}
+
+export function createQuizSaga() {
+  return {
+    type: CREATE_QUIZ_SAGA,
   };
 }

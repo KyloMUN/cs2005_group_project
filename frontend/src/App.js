@@ -21,6 +21,7 @@ import Login from './screens/Login';
 import Logout from './screens/Logout';
 import Account from './screens/Account';
 import ChangePassword from './screens/ChangePassword';
+import CreateQuiz from './screens/CreateQuiz';
 
 export const theme = {
   global: {
@@ -74,6 +75,7 @@ export default class App extends Component {
               <Box direction='row' flex overflow={{horizontal: 'hidden'}}>
                 <Box flex align='center' justify='center'>
                   <Route path='/' exact component={Home} />
+                  <Route path='/new/quiz' component={CreateQuiz} />
                   <Route path='/login' component={Login} />
                   <Route path='/logout' component={Logout} />
                   <Route path='/account' component={Account} />
