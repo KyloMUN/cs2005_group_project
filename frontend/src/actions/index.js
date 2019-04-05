@@ -10,6 +10,8 @@ import {
   GET_WHOAMI_FAIL,
 
   CLEAR_WHOAMI,
+
+  CHANGE_PASSWORD_SAGA,
 } from '../constants';
 
 export function loginSaga(username, password) {
@@ -65,4 +67,12 @@ export function clearWhoami() {
   return {
     type: CLEAR_WHOAMI,
   }
+}
+
+export function changePasswordSaga(oldPassword, newPassword) {
+  return {
+    type: CHANGE_PASSWORD_SAGA,
+    oldPassword,
+    newPassword,
+  };
 }

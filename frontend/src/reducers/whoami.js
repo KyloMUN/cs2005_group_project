@@ -14,6 +14,7 @@ export default function whoami(state = initialState, action) {
     case GET_WHOAMI_SUCCESS:
       return {
         ...state,
+        classes: action.classes,
         username: action.username,
         realname: action.realname,
         roles: action.roles,

@@ -1,5 +1,5 @@
 //const apiUrl = process.env.REACT_APP_API_URL;
-const apiUrl = 'http://localhost:5000';
+const apiUrl = 'http://localhost:5000/api';
 
 async function get(endpoint, {token}) {
   const response = await fetch(`${apiUrl}/${endpoint}`, {

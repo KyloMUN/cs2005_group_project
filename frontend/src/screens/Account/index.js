@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import {Markdown} from 'grommet';
+import {Heading} from 'grommet';
 
 import {getWhoamiSaga} from '../../actions';
 import {isEmpty} from '../../utils';
@@ -18,21 +18,34 @@ class Account extends Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
-  }
-
   studentView = () => {
+    const {
+      username,
+      realname,
+      classes,
+    } = this.props.whoami;
+
     return (
-      <p>Student view</p>
+      <>
+        <Heading level='4'>Hello {realname ? realname : username}, here are your classes:</Heading>
+        {
+          Object.keys(classes).map((key) => (
+            <LinkButton
+              label={classes[key].classname}
+              key={key}
+              whereto={`/view/class/${classes[key].id}`}
+              history={this.props.history}
+            />
+          ))
+        }
+        <LinkButton
+          label="Change password"
+          whereto="/changepassword"
+          history={this.props.history}
+        />
+      </>
     );
-    /*return (
-      <Button
-        label="Homepage"
-        onClick={() => {this.props.history.push('/')}}
-        {...buttonStyle}
-      />
-    )*/
-  }
+  };
 
   teacherView = () => {
     return (

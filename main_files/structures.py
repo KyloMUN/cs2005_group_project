@@ -65,15 +65,15 @@ class Quiz:
 class Class:
     """Defines the properties of a Class professors can create and users can be enrolled in."""
 
-    def __init__(self, classname: str, teacher: str):
+    def __init__(self, classname: str, professor: str):
         """Create a Class.
 
         Keyword arguments:
         classname -- the name of the class
-        teacher -- teacher teaching the class
+        professor -- user teaching the class
         """
         self.classname = classname
-        self.teacher = teacher
+        self.professor = professor
 
         self.id = _new_id()
         self.students = []

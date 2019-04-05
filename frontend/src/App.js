@@ -20,6 +20,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Logout from './screens/Logout';
 import Account from './screens/Account';
+import ChangePassword from './screens/ChangePassword';
 
 export const theme = {
   global: {
@@ -76,6 +77,7 @@ export default class App extends Component {
                   <Route path='/login' component={Login} />
                   <Route path='/logout' component={Logout} />
                   <Route path='/account' component={Account} />
+                  <Route path='/changepassword' component={ChangePassword} />
                 </Box>
                 {this.state.showSidebar && <Sidebar />}
               </Box>
