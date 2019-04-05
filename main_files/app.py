@@ -13,7 +13,24 @@ manage_classes = ManageClasses()
 #auth._persist._shelf.clear()
 #auth.add_user('jackharrhy', 'foobar123', 'student')
 #auth.add_user('barab', 'finite', 'professor')
-print(auth._persist._shelf['User'])
+print('User', auth._persist._shelf['User'])
+for user in auth._persist._shelf['User']:
+    print(dict(vars(auth._persist._shelf['User'][user])))
+
+print("\n")
+print('Class', auth._persist._shelf['Class'])
+for _class in auth._persist._shelf['Class']:
+    print(dict(vars(auth._persist._shelf['Class'][_class])))
+
+print("\n")
+print('Quiz', auth._persist._shelf['Quiz'])
+for quiz in auth._persist._shelf['Quiz']:
+    print(dict(vars(auth._persist._shelf['Quiz'][quiz])))
+
+print("\n")
+print('QuestionBank', auth._persist._shelf['QuestionBank'])
+for qbank in auth._persist._shelf['QuestionBank']:
+    print(dict(vars(auth._persist._shelf['QuestionBank'][qbank])))
 # FOR DEV PURPOSES
 
 

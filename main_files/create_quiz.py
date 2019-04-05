@@ -1,3 +1,10 @@
+"""create_quiz.py
+
+This interacts with the Quiz and Question objects. Class CreateQuiz
+creates a new quiz object with the default attributes defined in the Quiz
+object class. Methods to add the start time, end time, time limit and
+questions to the quiz are provided in this class.
+"""
 import datetime
 from persistence import Persistence
 from structures import Question, QuestionBank, Quiz
@@ -17,11 +24,12 @@ class Create:
         creates a self.quiz variable that will be used to refer to the
         quiz in further methods. As well, an instance of persistance is
         created to store the quiz.
-        
+
         quizname: String
         num_of_attempts: Int
         """
         self.quiz = Quiz(quizname, num_of_attempts)
+        self.question_bank = QuestionBank()
         self.persist = Persistence()
 
     def add_start_time(self, year, month, day, hour=0, minutes=0):
@@ -61,7 +69,7 @@ class Create:
         done by taking the paramatar minutes and setting the attribute time
         limit of a quiz to a value in minutes, so that when the quiz is started,
         a timer is started equal to this value.
-        
+
         minutes: Int
         """
         self.quiz.time_limit = minutes
@@ -72,8 +80,9 @@ class Create:
         every attribute is set or not, thus allowing quiz modification in
         the future."""
         self.persist.store(self.quiz)
-    
+
     def get_id(self):
+        """Returns the ID of the quiz currently being created"""
         return self.quiz.id
 
     def add_question(self, questiontext, points, answerdict, choicesdict):
@@ -94,10 +103,14 @@ class Create:
 
     def add_all_questions_to_bank(self):
         """This method adds all questions in the quiz to a question bank, then
-        stores the bank in persistence. It does this by iterating over the list
-        of questions, storing them in a temporary list which is then sent to
-        storage as the question bank."""
-        tempbank = []
-        for questions in self.quiz.questions:
-            tempbank.append(questions)
-        Persistence.store(tempbank, QuestionBank)
+        stores the bank in persistence.
+        """
+        for question in self.quiz.questions:
+            self.question_bank.questions.append(question)
+
+        self.persist.store(self.question_bank)
+
+    def get_random_question_from_bank(self, course_id):
+        """Add a random question from the bank to the quiz."""
+        qbank = self.persist.retrieve(QuestionBank, course_id)
+        return qbank[randint(0, len(qbank)-1)]
