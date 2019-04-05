@@ -58,24 +58,27 @@ class Grading():
         Requirement 1.5.10
         '''
         self.passGrade = newGrade
-        if note:
-            self.changeLog.append(note)
+        log = "Grade for passing quiz changed to: " + newGrade + "Note: " + note
+        self.changeLog.append(log)
         return newGrade
         
 
-    def change_question_grade_for_student(self, question: Question, newGrade: int, studentList: Class, student: str, grading: Grade, note=None):
+    def change_question_grade_for_student(self, question: Question, newGrade: int, studentList: Class, student: str, grading: Grade, newAnswer=None, note=None):
         '''
         This method changes the grade of a specific question for a specific student by take in the Question value of which question you're dealing with,
         the integer value of newGrade, the Class value of your studentList of which you will pull students, and the string value of which student you would like to edit,
         along with the Grade value to look for that student's grade on the question, and an optional note string to document your change.
         Then, this module pulls the question from the persistence system, finds the question in the questionSet, edits it to change
         the current grade of the question into your provided newGrade value, and stores that question back into the persistence system.
+        It also gives you the option to change a student's answer to a question if the function is provided a newAnswer value, where the
+        function will overwrite the current answer with the given newAnswer.
 
         question: Question
         newGrade: int
         studentList: Class
         student: str
         grading: Grade
+        newAnswer: str
         note: str
         
         Author of requirement: cw1511
@@ -84,6 +87,9 @@ class Grading():
         '''
         current_question = self.persist.retrieve(Question, question)
 
+        if newAnswer:
+            grading.answer = newAnswer
+
         for y in grading.gradelist:
             for t in y:
                 if t == self.questionSet.index(question):
@@ -91,8 +97,8 @@ class Grading():
         self.persist.store(current_question)
         self.persist.store(self.questionSet)
 
-        if note:
-            self.changeLog.append(note)
+        log = "Grade for student on question changed to: " + newGrade + "Note: " + note
+        self.changeLog.append(log)
         return newGrade
 
     def change_weight(self, newWeight: int, note=None):
@@ -109,8 +115,9 @@ class Grading():
         Requirement 1.5.4 / 1.5.7
         '''
         self.weight = newWeight
-        if note:
-            self.changeLog.append(note)
+
+        log = "Weight of quiz changed to: " + newWeight + "Note: " + note
+        self.changeLog.append(log)
         
         return newWeight
     
@@ -133,8 +140,9 @@ class Grading():
         current_question = self.persist.retrieve(Question, question)
         current_question.answers.append(newAnswer)
         self.persist.store(current_question)
-        if note:
-            self.changeLog.append(note)
+
+        log = "Answer added: " + newAnswer + "Note: " + note
+        self.changeLog.append(log)
         return newAnswer
 
     def change_grade(self, newGrade: int, result: Result, note=None):
@@ -155,7 +163,9 @@ class Grading():
         res = self.persist.retrieve(Result, result)
         res.fullMark = newGrade
         self.persist.store(res)
-        if note:
-            self.changeLog.append(note)
+
+        log = "Grade for student changed to: " + newGrade + "Note: " + note
+        self.changeLog.append(log)
+
         return newGrade
 
