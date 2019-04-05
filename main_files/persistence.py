@@ -85,7 +85,7 @@ class Persistence:
 
     def retrieve(self, structure: T, structure_id: str) -> T:
         """This method is used to retrieve structures from the shelf. It takes in the structure itself, as well as the 
-        name of the 
+        name of the structure so that it can be determined from multiple structures in a module.
 
         Keyword arguments:
         structure -- class retrieve stored

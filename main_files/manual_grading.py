@@ -147,8 +147,8 @@ class Grading():
 
     def change_grade(self, newGrade: int, result: Result, note=None):
         '''
-        This method is to change a student's grade on the surface level, say if they recieved bonus marks for a different assignment.
-        This is done by taking in a newGrade integer value and a Result value, and an optional note value for logging purposes.
+        This method is to change a class' grade on the surface level, say if it is desired to curve the grade up or down.
+        This is done by taking in a newGrade integer value and a Result object, and an optional note value for logging purposes.
         First the method grabs the Result structure from persistence, and changes it's fullMark attribute to the newGrade value provided to the method.
         Then it stores the result back in persistence, finalizing the change.
 
@@ -164,7 +164,7 @@ class Grading():
         res.fullMark = newGrade
         self.persist.store(res)
 
-        log = "Grade for student changed to: " + newGrade + "Note: " + note
+        log = "Grade for class changed to: " + newGrade + "Note: " + note
         self.changeLog.append(log)
 
         return newGrade

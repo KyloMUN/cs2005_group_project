@@ -337,11 +337,9 @@
                             <p class="rqveri">Log in as instructor, modify everyone's grade on a quiz; check individual
                                 student results.</p>
                                 <p>
-                                    This is done in the 'change_grade' function in the module. The way the grading modules work together prevents 
-                                    a sure fire way of changing the grade of an entire class all at once, so changing an entire class' grades would be
-                                    done through our react-based quiz system, perhaps by running a list of results through the function multiple times.
-                                    But, where this was not deemed necessary, the function takes in a single student's result object and the instructor
-                                    can provide them with a newGrade to boost, curve, or decrease their mark accordingly.
+                                    This is done in the 'change_grade' function in the module. The Result object of the Automatic Grading module allows an
+                                    easy way of curving an entire class' grades either up or down, so all the function needs to do is change the fullMark aspect
+                                    of the class' Result object to the given newGrade integer value.
                                 </p>
                         </li>
                         <li class="rqitem" data-moscow="M">Manual modifications are logged with optional note.

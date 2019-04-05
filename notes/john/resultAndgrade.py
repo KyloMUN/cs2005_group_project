@@ -7,14 +7,13 @@ Result stores the grade objects of all students, so that it can calculate averag
 
 
 class Grade:
-    """A class that stores all the grade aspect item of a quiz that a student taken.
-       It can check the answers of all attempts of a student and grade it with the highest
-       grade. 
+    """A class that stores all the grade aspect items of a quiz that a student has taken.
+       It takes care of all the marking by checking answers against correct answers, adding points and attempts up and comparing
+       attempts to ensure the student gets the highest grade possible. 
     """
     def __init__(self, dictionaryofstudentanswer, studentnameORid, pointList, correctAnswer):
-        """ dictionaryofstudentanswer -- a dictionary which key is studentname/id (str)
-                                                            value is answer (str)
-            studentnameORid -- a student name/id (str) which is one of the key in the above dictionary
+        """ dictionaryofstudentanswer -- a dictionary which the key is their studentname/id (str) and the value is their answer (str)
+            studentnameORid -- a student name/id (str) which is one of the keys in the above dictionary
             pointList -- a list that stores the points for each question of the quiz. 
             correctAnswer --  a list stores the correct answer of the quiz
         """
@@ -29,8 +28,9 @@ class Grade:
         self.correct_answer = correctAnswer
 
     def calculate_grade(self):
-        """Calculate the grade of all attemps,
-        then update the all attemps and the highest grade.
+        """ Calculate the grade of all attempts, then updates the grade to the highest grade possible by comparing every attempt to eachother.
+            If an attempt is found to have not been utilized, it will be marked False and will not be used by this method, preventing any possible
+            errors that could arrise by adding null values.
         """
         self.allattemptGrade=[]
         if self.getparticipate() == False:
@@ -51,7 +51,10 @@ class Grade:
 
 
     def checkParticipate(self):
-        """Check if all the answers are null value, if yes, update self.participate to False and update the self.number_attempt """
+        """This function checks if all the answers in an attempt are a null value, and if so, updates the participation value of the attempt
+         to False, and adds the attempt to the total. This ensures there are no errors when attempting to calculate a grade of an attempt that
+         was not utilized, as it will simply be rendered False and unusable.
+        """
         if self.answer == []:
             self.participate = False
             self.number_attempt = 0
@@ -63,11 +66,11 @@ class Grade:
             self.number_attempt = n
 
     def check_answer(self):
-        """Compare the answers of each attemps to the correct answer.
-        If match, get the corresponding points and append it to a sublist.
-        If not, append 0 to the sublist, each attempt will has a correspoinding sublist.
-        After all attemps were checked, update the total numbers of attempts,
-        and append all the sublists to the self.gradelist.    
+        """Compare the answers of each attempts to the correct answers.
+        If they match, get the corresponding points and append it to a sublist.
+        If not, append 0 to the sublist, each attempt will have a correspoinding sublist.
+        After all attemps are checked, update the total numbers of attempts,
+        and append all the sublists to the self.gradelist list object.    
         """
         self.gradelist=[]
         self.checkParticipate()
@@ -88,11 +91,12 @@ class Grade:
         return self.student
 
     def getHighestGrade(self):
-        """Return the highest grade out of all the attemps."""
+        """Return the highest grade out of all the attempts."""
         return self.highestgrade
 
     def getAttemptGrade(self, number):
-        """Return the specific number of attempts grade, depends on the number given.
+        """Return a specific attempt's grade, which attempt is used depends on the number given to the function.
+
         int number -- the number of the attempt (number = 1 refers to "attempt 1")
         """
         while True:
@@ -111,12 +115,14 @@ class Grade:
 
 class Result:
     """
-    Create a result object of all the students who took the quiz.
-    self.gradeObjectList - a list that contains each student's the grade objects, by using 
-                           this list, each student's highest grade can be retrieved  
+    This class creates a result object of all the students who took the quiz. It uses a list of Grades and compares them to eachother in order
+    to get a class average, how many students participated, a list of questions, among other things. This is useful mostly to the instructor,
+    as they can see how well their class is doing and may choose to keep this information private from their students. It takes in the dictionary
+    of student ids compared to answers, a pointList, a questionList, and the specific quizNumber. 
+
+    gradeObjectList: a list that contains each student's the grade objects, by using this list, each student's highest grade can be retrieved
     """
-    def __init__(self, dictionaryofstudentanswer, pointList, questionList, quizNumber, correctAns):
-        self.correct_answer = correctAns
+    def __init__(self, dictionaryofstudentanswer, pointList, questionList, quizNumber):
         self.quiz_number = quizNumber
         self.question_list = questionList
         self.point_list = pointList
@@ -134,21 +140,29 @@ class Result:
             self.gradeObjectList.append(grade)
 
     def calculate_fullmark(self):
-        """Calculate the full mark of a quiz""" 
+        """
+        This method calculates the full mark of a quiz by adding up the points given in pointList, and assigns the value to the fullMark
+        value of the Result object. 
+        """ 
         s = 0
         for i in self.point_list:
             s = s + i
         self.fullMark = s
 
     def get_student_grade_object(self, nameORid):
-        """Return the grade object of a given student name or id (str)"""
+        """
+        This method returns the grade object of a given student name or id, which is taken in as a string. It searches the gradeObjectList
+        for that string and return what grade the student has gotten. This makes it easy for instructors to keep track of certain students if
+        need be. 
+        """
         for i in self.gradeObjectList:
             if i.getStudent() == nameORid:
                 return i
 
     def make_result_dict(self):
-        """Make a dictionary stores the student name/id(depends on login info) as key, 
-           stores the highest grade as the value of the quiz. Then update the self.result_dict
+        """
+        This function makes a dictionary and stores the student name/id (depends on login info) as a key, 
+        and stores the highest grade as the value of the quiz. Then it updates the result_dict value of the Result object for easy accesibility.
         """    
         for i in self.student_list:
             for j in self.gradeObjectList:
@@ -156,8 +170,9 @@ class Result:
                     self.result_dict[i] = j.getHighestGrade()
 
     def calculate_Average(self):
-        """Calculate the average grade for the quiz using the gradeObjectList,
-        and then update the average.
+        """
+        This method calculates the average grade of the class on the current quiz using every item in the gradeObjectList,
+        and then updates the average value in the Result object, so instructors can see how their class did on the quiz as a whole.
         """
         s = 0
         for i in self.gradeObjectList:
@@ -166,7 +181,10 @@ class Result:
         self.average = s/len(self.gradeObjectList)
 
     def calculate_participation(self):
-        """Calculate how many students participate in the quiz."""
+        """
+        Calculate how many students have participated in the quiz. This can be compared to the overall number of students in the class to see
+        how active the students are being, which may inspire grade curving or something akin to that.
+        """
         n = 0
         for i in self.gradeObjectList:
             if i.getparticipate() == True:
@@ -174,33 +192,32 @@ class Result:
         self.participation = n
 
     def createHistogram(self):
-        """Create a histogram of the data"""
+        """
+        This method creates a histogram of the data given based on the average marks of the students on the quiz related to which students
+        achieved which marks.
+        """
         return "Hello, World!"
     
     def getAverage(self):
-        """Return the average grade of the quiz"""
+        """Returns the average value of the result object, which represents the average grade of the quiz"""
         return self.average
 
     def getFullMark(self):
-        """Return the total point of the quiz"""
+        """Returns the total point value of the quiz, adding every student's marks together"""
         return self.fullMark
 
     def get_result_dict(self):
-        """Return the result dictionary"""
+        """Returns the result dictionary, a dictionary that holds student names or ids as keys and their marks on the quiz as values."""
         return self.result_dict
 
     def get_question(self):
-        """Return the questions of the quiz"""
+        """Returns the questions of the quiz."""
         return self.question_list
 
     def get_quiz_number(self):
-        """Return the quiz number"""
+        """Returns the specific number of the quiz."""
         return self.quiz_number
 
-    def get_correct_answer(self):
-        """Return the correct answer of the quiz"""
-        return self.correct_answer
-
     def get_participation(self):
-        """Return the number of participation of the quiz"""
+        """Return the number of students who participated in the quiz"""
         return self.participation
