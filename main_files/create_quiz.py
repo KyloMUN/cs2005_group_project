@@ -10,7 +10,7 @@ from persistence import Persistence
 from structures import Question, QuestionBank, Quiz
 
 
-class Create:
+class CreateQuiz:
     """This module is a wrapper for the Quiz object. This module creates
     a new quiz, and the methods to add the start time, end time, time
     limit and questions to the quiz are provided in this class.
