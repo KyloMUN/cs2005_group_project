@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0097)http://www.cs.mun.ca/~brown/cs2005/Notes/assignment1/requirements/usecases/review_submission.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="ReText 7.0.1">
+<title>ReviewClassResultUsecase</title>
+</head>
+<body>
+<style>
+h2, p {
+    margin-top: 0px;
+    margin-bottom: 0px
+}
+</style>
+
+<p><strong>Title:</strong> Review Class Result</p>
+<p><strong>Primary Actor:</strong> Instructor</p>
+<p><strong>Stakeholders and Interests:</strong></p>
+<blockquote>
+<p>Instructor - wants to review the class result of a quiz</p>
+
+
+</blockquote>
+<p><strong>Precondition</strong>: User with Instructor privileges logged in already.</p>
+<p><strong>Trigger</strong>: Instructor notified of submission review request. </p>
+<blockquote></blockquote>
+<p><strong>Main Scenario</strong>:</p>
+<ol>
+<li>Instructor selects quiz for review</li>
+<li>SuD lists class result and student submissions</li>
+<li>Instructor selects class result</li>
+<li>SuD displays the quiz items from top to bottom follows the order:participation, then average grade, then the hitogram. </li>
+<li>Instructor return to the previous page and select student submissions</li>
+<li>SuD list all the student name with corresponing id that can take the quiz</li>
+<li>Instructor select one of the student as desired</li>
+<li>SuD displays items from to bottom follows the order: the student name, id, then the attempt 1 with its grade, then attempt 2 with its grade up to the number of attempts that the student took, lastly the highest grade</li>
+<li>Instructor select one of the attempt as desired. </li>
+<li>SuD displays the quiz questions with its corresponding correct answers and also with the student answers for instructor to review </li><li>Instructor repeats step 9 to 10. </li><li>Instructor repeats step 5 to 11. </li></ol>
+<p><strong>Extensions</strong>:</p>
+<blockquote>
+<p>8a. No attempts shows if student did not take the quiz </p>
+
+<p>10a. Any question without a student answer means the student did not answer the corresponding question</p>
+
+</blockquote>
+
+
+</body></html>

@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid2\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww15160\viewh11720\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\b\fs28 \cf2 \expnd0\expndtw0\kerning0
+Description of Component\
+\
+View Results, Automatic Grading\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
+\ls1\ilvl0
+\b0\fs24 \cf2 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+instructor views\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl280\partightenfactor0
+\ls1\ilvl1\cf2 \kerning1\expnd0\expndtw0 {\listtext	
+\f1 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+class results: for an individual quiz: class participation, average, histogram\
+\ls1\ilvl1\kerning1\expnd0\expndtw0 {\listtext	
+\f1 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+class attempts: for an individual quiz: number of attempts by students\
+\ls1\ilvl1\kerning1\expnd0\expndtw0 {\listtext	
+\f1 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+individual results: for individual student, each quiz, for each attempt, for each question\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+student views\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl280\partightenfactor0
+\ls1\ilvl1\cf2 \kerning1\expnd0\expndtw0 {\listtext	
+\f1 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+summary by quiz all my attempts\
+\ls1\ilvl1\kerning1\expnd0\expndtw0 {\listtext	
+\f1 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+summary by quiz\
+\ls1\ilvl1\kerning1\expnd0\expndtw0 {\listtext	
+\f1 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+each question show my submission, results and correct answers\
+\pard\tx566\tx1133\pardeftab720\sl280\partightenfactor0
+\cf2 Check usecases shown in ReviewClassResultUsecase.html and ReviewSubmissionUsecase.html for full details\
+\
+In order to accomplish the above requirements, this component will basically need to obtain the student\'92s answers from the persistence component, \
+manipulate and grade the student\'92s answer and store the result for later use. The result will be used for calculate the average, class participation, and create\
+hitogram etc.\
+\
+My module of the Component contains two class:\
+The Grade class is used for check the answer and calculate a single student\'92s quiz grade as well as all the attempts\'92 grade if any. All the data stored in this class will be used for individual results in both the instructor views and student views.\
+The Result class uses the Grade class to calculate each students\'92 grade and stores the highest grade for each. The data being stored can be used for calculate the average,  create histogram, number of attempts, participation etc. And all these together become the class results in the instructor view.}

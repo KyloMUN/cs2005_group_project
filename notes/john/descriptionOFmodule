@@ -1,0 +1,56 @@
+NAME
+	View Result and Automatic Grading - An interface of Result and Grade objects
+
+FILE
+	resultAndgrade.py
+
+DESCRIPTION
+	classes:
+		Grade - a grade object.
+		
+		Result - a result object.
+
+
+CLASSES
+	Grade
+    Result
+
+	class Grade
+	|	Create a grade object
+	| 
+	|	public methods:
+	|		calculate_grade(self) - calculates the grade of all attempts
+	|		check_answer(self) - checks the answers of all attempts		
+	|		getStudent(self) - returns the student(name/id) that take the quiz
+	|		getHighestGrade - returns the highest grade from all the attempts
+	|		getAttemptGrade(self, number) - returns the grade of a specific attempt.
+	|		getNumAttemps(self) - returns how many attempts a student had taken 	
+	|		checkParticipate(self) - checks if a student participate in the quiz
+	|		getparticipate(self) - returns True if a student participate in the quiz, False otherwise.
+	|
+	|	Methods defined here:
+	|	
+	|	__init__(self, dictionaryofstudentanswer, studentnameORid, pointList) - create grade object
+	|
+    class Result
+    |   Create a result object
+    |   
+    |   public methods:
+    |       calculate_total_points(self) - calculates the full mark of the quiz
+    |       get_student_grade_object(self, nameORid) - returns a grade object of a specific student
+    |       make_result_dict(self) - creates a dictionary stores the student and its highest point of the quiz
+    |       calculate_Average(self) - calculates the average point of the quiz of the whole class
+    |       calculate_participation(self) - calculates the number of calculate_participation
+    |       createHistogram(self) - creates a Histogram presents the whole class result
+    |       getAverage(self) - returns the average grade
+    |       getTotalPoint(self) -  returns the full mark of the quiz
+    |       get_result_dict(self) -  returns the result dictionary
+    |       get_question(self) - returns the list of questions
+    |       get_quiz_number(self) -  returns the number for the quiz
+    |       get_correct_answer(self) - returns the list of correct answers of the quiz
+    |       get_participation(self) - returns the number of students that participate in the quiz
+    |
+	|   Methods defined here:
+    |
+    |   __init__(self, dictionaryofstudentanswer, pointList, questionList, quizNumber, correctAns)
+    

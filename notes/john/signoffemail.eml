@@ -1,0 +1,101 @@
+Delivered-To: xh6634@g.mun.ca
+Received: by 2002:a50:d945:0:0:0:0:0 with SMTP id u5csp6774927edj;
+        Wed, 27 Mar 2019 09:32:30 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyy8uy0HYuHiM+QIy3RLY8rmRPFBKVmB4dst09o2eL1GmkpTPWiwERgsXnO4jgDuR+3imvQ
+X-Received: by 2002:a17:902:e5:: with SMTP id a92mr37477911pla.326.1553704349996;
+        Wed, 27 Mar 2019 09:32:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1553704349; cv=none;
+        d=google.com; s=arc-20160816;
+        b=BTkNGErrIzlEEsCYhVdluOSLjLEM1pWGSBKRU0b6b5qk+ICzIiAWev2f838ErPmKwk
+         pk/tEg5mOBuEiEyiJ3tMO6cas/olFoeqTJB4XFW8fKyLDfXI+6Il89oQJ5vaO4GX6fe7
+         Z2WZcIuSQR/GyFaDom6inukbkYuJOL6WFI5CAKcr9r6SQf9cUwR/MJsFE1yhn9JlbmQA
+         KN4bMBZkOJEaadMddA3cv9tYvAFF9aFjKFzCyue+wbfHhaLvUATKSxKJKUQVfgRiXGOJ
+         VBbT1yYqrMY/XxY66QhCImfjO3wuoieAEllp/BdmzJW26urfMrfONuHaDGHXgr2COeQa
+         VHGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:ironport-sdr;
+        bh=14zBoDSFd0CQV4sgJPZdbhcwN63VNkEzRcJ9sARfIsM=;
+        b=S5RZt3vdFCXKDHi6MC500EZdM0Y5Ul3NSfrBBrRJU4XtqE92/3X5vs33oO24SjdIVE
+         L6ZUOCAdTA7KpgYY6xHrWMd1P8HUVENV+hmRQ5d1dJv9TCyyLAiBO5ob8dwzkaAjqVV/
+         0iQjs7AaIHFPLk1lllecPfOo0miDQZvW5PKMtwidbOpjoWoYj3TbTDWxBq2JabYJjaf4
+         6C7oNgJfeZyBVWcxanidR1J60bZd+NvicEdTp/43YBzJiqhUQ6xDchGdhrI2kd63Mk3d
+         HC1f8XsCY8gsNnY8uEvmyeVUZDColijDqLlKztLtw74lLM8e3OKZmZ2zoUs8CqD3MW9m
+         PGgw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of kolmstead@mun.ca designates 134.153.136.28 as permitted sender) smtp.mailfrom=kolmstead@mun.ca
+Return-Path: <kolmstead@mun.ca>
+Received: from peterson.ucs.mun.ca (peterson.ucs.mun.ca. [134.153.232.35])
+        by mx.google.com with ESMTPS id 31si19869857plg.364.2019.03.27.09.32.29
+        for <xh6634@g.mun.ca>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 27 Mar 2019 09:32:29 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of kolmstead@mun.ca designates 134.153.136.28 as permitted sender) client-ip=134.153.136.28;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of kolmstead@mun.ca designates 134.153.136.28 as permitted sender) smtp.mailfrom=kolmstead@mun.ca
+Received: from esa08.ucs.mun.ca (esa08.ucs.mun.ca [134.153.136.28])
+	by peterson.ucs.mun.ca (8.14.4/8.14.4) with ESMTP id x2RGWSop017425
+	for <xh6634@mun.ca>; Wed, 27 Mar 2019 14:02:28 -0230
+IronPort-SDR: MLliMz5JtB7z6dmD9feFZzfhEBDzYj4HNIG2V9rHDDZR8PSiqN5euJVxStMdQ2WljzmMrq1trS
+ a9kf5WyDjYfNL6hqENuZcS7q1cqh+YdLK5j3TuG+Z2XfgSbS3QBkLV681B2LXz7yJeuktWWQZP
+ CiqdozFKi53LMrfzhlk/bGlu+DZLOPJBJwlyTIZDqB7j8NyP76fadwU7aQCEkCfsiPyUoi1lLi
+ hiAydz+bRRUs9MQAxrQp6gy9V9nK6e3W4Z6+MYEGc+EkzcH8plSBpHeXzLMHdJ7odXQk0BK6jd
+ tqA=
+X-IronPort-AV: E=Sophos;i="5.60,277,1549942200"; 
+   d="scan'208,217";a="10103359"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from mail-ed1-f70.google.com ([209.85.208.70])
+  by smtp08.ucs.mun.ca with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2019 14:02:24 -0330
+Received: by mail-ed1-f70.google.com with SMTP id 41so5584636edq.0
+        for <xh6634@mun.ca>; Wed, 27 Mar 2019 09:32:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=14zBoDSFd0CQV4sgJPZdbhcwN63VNkEzRcJ9sARfIsM=;
+        b=NCcFuvvoiy8Q1Nh84tvziXLVGRE7ftl7c/L/TVOh2a/r39+KKCWvuqR7J+qj2LN6qP
+         uMuKDjKxHwOGZxx8WIlgDSj8b00WBQwcWEeqOZxgfc75pKGm6fWgexgNvOk1jKMj4pWH
+         dCuYC9Qt+Rope1rXFtkmxM3dRAXGI1ire4h8WVKIHS+h+HPNYwu24yxdBo4TrCYcdGu7
+         h/CM4nIOBomRLMGddglHz9oy5wYLqzniU6DF/ldaCRZkJ6h/P1/Jev8YdxuzEekgxiDM
+         GN7RUiKrUFcB/WN63f9OoE1RExg/zNPxtGkxSKBwn8Zcdty34yVZKyvpD/eOWA+inR3i
+         aS2A==
+X-Gm-Message-State: APjAAAXrL5vBIKacxqTB8qpyl2M9sYZLKWmL9h33/i7a84LVdMGjOPDc
+	1UzezNTat6O9HgWmg7S3wbvgox2bfTB3QeoxxLWgZuIKR5J+QELpaYokSDF56vERYBKQ3Do7KDM
+	4vMQ5miEwP+h+6v7rR1qcN5E=
+X-Received: by 2002:a17:906:251b:: with SMTP id i27mr21797108ejb.146.1553704341927;
+        Wed, 27 Mar 2019 09:32:21 -0700 (PDT)
+X-Received: by 2002:a17:906:251b:: with SMTP id i27mr21797094ejb.146.1553704341782;
+ Wed, 27 Mar 2019 09:32:21 -0700 (PDT)
+MIME-Version: 1.0
+From: "Olmstead, Kyle" <kolmstead@mun.ca>
+Date: Wed, 27 Mar 2019 14:02:08 -0230
+Message-ID: <CAGzVHTKCU80RLTNU5y7oF6XXp8hN5EkucNaWhv6QD=xqdGn1cg@mail.gmail.com>
+Subject: Appproval cs2005
+To: xh6634@mun.ca, ashevchenko@mun.ca, aplanger@mun.ca, jaharrhy@mun.ca
+Content-Type: multipart/alternative; boundary="00000000000060f123058515fb97"
+
+--00000000000060f123058515fb97
+Content-Type: text/plain; charset="UTF-8"
+
+Hey there,
+
+Just emailing to let you know that the structures you have in your code are
+acceptable, as we've discussed and agreed upon in our meetings up to this
+time.
+
+- Kyle Olmstead
+(kolmstead@mun.ca)
+March 27th 2019
+
+--00000000000060f123058515fb97
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div dir=3D"auto">Hey there,</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Just emailing to let you know that the structures yo=
+u have in your code are acceptable, as we&#39;ve discussed and agreed upon =
+in our meetings up to this time.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">- Kyle Olmstead</div><div dir=3D"auto">(<a href=3D"mailto:kolmste=
+ad@mun.ca">kolmstead@mun.ca</a>)</div><div dir=3D"auto">March 27th 2019</di=
+v></div>
+
+--00000000000060f123058515fb97--
