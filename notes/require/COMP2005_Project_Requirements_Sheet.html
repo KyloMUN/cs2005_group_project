@@ -290,6 +290,11 @@
                                     Submission</a>
                                 use case.</p>
                             <p class="rqveri">Log in as instructor, modify student grades.</p>
+                            <p>This is done in the Manual Grading module under the function 'change_question_grade_for
+                                _student', essentially this method is accessed through the quiz system by choosing which
+                                 question grade you would like to change, and you can return to the edit menu and edit as many
+                                 grades as you would like, and each time having them stored in the system. 
+                            </p>
                         </li>
                         <li class="rqitem" data-moscow="M">Instructor can modify answers.
                             <p class="rqdesc">Inital grading can be reviewed on a answer-by-answer basis
@@ -302,6 +307,13 @@
                                     Submission</a>
                                 use case.</p>
                             <p class="rqveri">Log in as instructor, modify student answer, see it regraded.</p>
+                            <p>
+                                This requirement is also covered in the function 'change_question_grade_for_student'. Since this 
+                                requirement is very much similar to the previous requirement, we found it would be easier to have 
+                                the requirement be dealt with by the same function that changes the grade, but with an added option to
+                                 present a newAnswer you would like to overwrite the current answer with. 
+                                If a newAnswer is provided, the fuction will overwrite the current answer with your provided newAnswer.
+                            </p>
                         </li>
                         <li class="rqitem" data-moscow="M">Instructor can change quiz answers.
                             <p class="rqdesc">The quiz may have had a bad question. Correct answer to a quiz item and
@@ -310,6 +322,12 @@
                             <p class="rqvali">Lecture Note #14.
                             </p>
                             <p class="rqveri">Log in as instructor, modify quiz answer, see if grades updated.</p>
+                            <p>
+                                This is covered in the function 'change_answer'. However, instead of editing currently existing quiz answers,
+                                 the function instead appends the correct version of the answer to the list of currently correct answers.
+                                 This is done to prevent conflicts between students who may have already completed the question and received
+                                 a correct mark, but perhaps removing one of the answers would dock them a mark unfairly.
+                            </p>
                         </li>
                         <li class="rqitem" data-moscow="M">Instructor can change quiz results.
                             <p class="rqdesc">Instructor may want to adjust class overall or curve the quiz results, by
@@ -318,6 +336,13 @@
                             <p class="rqvali">Lecture Note #14. </p>
                             <p class="rqveri">Log in as instructor, modify everyone's grade on a quiz; check individual
                                 student results.</p>
+                                <p>
+                                    This is done in the 'change_grade' function in the module. The way the grading modules work together prevents 
+                                    a sure fire way of changing the grade of an entire class all at once, so changing an entire class' grades would be
+                                    done through our react-based quiz system, perhaps by running a list of results through the function multiple times.
+                                    But, where this was not deemed necessary, the function takes in a single student's result object and the instructor
+                                    can provide them with a newGrade to boost, curve, or decrease their mark accordingly.
+                                </p>
                         </li>
                         <li class="rqitem" data-moscow="M">Manual modifications are logged with optional note.
                             <p class="rqdesc">Manual changes need to be reviewable, so it is possible to tell where
@@ -327,6 +352,11 @@
                             </p>
                             <p class="rqveri">Log in as instructor, make modifications, and examine log of previous
                                 changes.</p>
+                                <p>
+                                    Rather than being confined to a single method, the option to leave a note logging your changes is present within 
+                                    every function in the module. Where some may find this a case of code duplication, it was found that keeping the
+                                    types of notes separate from eachother helps decouple the methods within the module, which helps the entire team.
+                                </p>
                         </li>
                     </ol>
                 </li>

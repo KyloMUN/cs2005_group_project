@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>COMP2005 Project Requirements Sheet</title>
+    <link rel="stylesheet" href="./requirements.css">
+    <link rel="icon" href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/favicons/favicon-16x16.png">
+</head>
+
+<body>
+    <h1>Requirements List</h1>
+    <ol class="rqlist">
+        <li class="rqitem">Functional
+
+            <ol class="rqlist">
+                <li class="rqitem">User Authentication
+                    <ol class="rqlist">
+                        <li class="rqitem" data-moscow="M">Users can authenticate with Login/Password
+                            <p class="rqdesc">User logins and passwords have to be supported, and there
+                                may be special users who are guests or not formally registered for the course.</p>
+                            <p class="rqdata">author:brown; date: Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Client interview on Dec 30 2019.
+                                Use Case <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/login.html">Login</a>
+                                was provided by client.
+                                Lecture note #14 </p>
+                            <p class="rqveri">Tester logs into the system.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">Two levels of access: instructor and student
+                            <p class="rqdesc">Instructors can create and grade quizzes. Students can only access quizzes
+                                instructor has assigned to them</p>
+                            <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                            <p class="rqvali">Client lecture note #14.</p>
+                            <p class="rqveri">Logs into the system.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">New accounts can be configured
+                            <p class="rqdesc">Instructors can create and assign accounts, and set their access level.
+                            </p>
+                            <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                            <p class="rqvali">Client lecture note #14.</p>
+                            <p class="rqveri">Logs into the system; create account.</p>
+                        </li>
+
+                    </ol>
+                </li>
+
+                <li class="rqitem">Instructors can create a quiz
+                    <ol class="rqlist">
+                        <li class="rqitem" data-moscow="M">Instructors can create a quiz.
+                            <p class="rqdesc">Users with access can create new quizzes. Items are to be available from a
+                                quiz bank.</p>
+                            <p class="rqdata">author:agstacey; date: Fri Jan 11 12:28:40 NST 2019; brown: date: Sun Fe
+                                24 11:21:30 NST 2019</p>
+                            <p class="rqvali">Lecture note #14. Use Case
+                                <a href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/make_quiz.html">Make
+                                    Quiz</a> will need revision based on quiz bank requirement</p>
+                            <p class="rqveri">Tester creates a quiz.</p>
+                        </li>
+                        <li class="rqitem">Quiz attributes
+                            <ol class="rqlist">
+                                <li class="rqitem" data-moscow="M">Dates
+                                    <p class="rqdesc">Quiz will have start/end time.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Examine quiz for attribute.</p>
+                                </li>
+                                <li class="rqitem" data-moscow="M">Attempts
+                                    <p class="rqdesc">Quiz will have limited number of attempts.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Examine quiz for attribute.</p>
+                                </li>
+                                <li class="rqitem" data-moscow="M">Multiple Answers
+                                    <p class="rqdesc">Quiz items can have multiple correct answers.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Examine quiz for attribute.</p>
+                                </li>
+                                <li class="rqitem" data-moscow="M">Weighting
+                                    <p class="rqdesc">Quiz items can be weighted.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Examine quiz for attribute.</p>
+                                </li>
+                                <li class="rqitem" data-moscow="M">Student list
+                                    <p class="rqdesc">Quizzes can be taken only by listed students.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Examine quiz for attribute.</p>
+                                </li>
+                            </ol>
+                        </li>
+
+                        <li class="rqitem" data-moscow="M">Questions are entered in Quiz Bank
+                            <p class="rqdesc">New quiz items are to be stored in a quiz bank so they can be re-used in
+                                other quizzes.</p>
+                            <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                            <p class="rqvali">Client lecture note #14.</p>
+                            <p class="rqveri">Logs into the system; add item to bank.</p>
+                        </li>
+
+
+
+                        <li class="rqitem" data-moscow="M">Instructor can add dates.
+                            <p class="rqdesc">The instructor can specify how long the students will have to complete
+                                a quiz by adding begin and end dates when the quiz is created.</p>
+                            <p class="rqdata">author:alm566; date: Fri Jan 11 16:30:40 NST 2019; brown; date: Sun Fe 24
+                                11:21:30 NST 2019</p>
+                            <p class="rqvali">Lecture note #14 Use Case <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/make_quiz.html">Make
+                                    Quiz</a> requires update</p>
+                            <p class="rqveri">Instructor creates a quiz and adds/chooses dates.
+                                Try student student access outside date range and fail.</p>
+                        </li>
+
+                        <li class="rqitem" data-moscow="M">Instructor can specify number of possible quiz attempts.
+                            <p class="rqdesc">Instructor can input the desired number of attempts a student can have at
+                                a
+                                particular quiz.</p>
+                            <p class="rqdata">author:crd073; date: Sun Jan 13 20:28:40 NST 2019</p>
+                            <p class="rqvali">Use Case
+                                <a href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/make_quiz.html">Make
+                                    Quiz</a></p>
+                            <p class="rqveri">Tester completes the quiz the granted number of times and attempts an
+                                extra
+                                try.</p>
+                        </li>
+
+                        <li class="rqitem" data-moscow="M"> Instructor can modify the existing quiz.
+                            <p class="rqdesc"> Instructor can add questions, delete questions and can modify dates,
+                                students taking the quiz, number of attempts allowed, weightage
+                                of any question of an pre-existing quiz or any other attributes of a quiz they are
+                                creating or have created. </p>
+                            <p class="rqdata"> author: suz250; date: Mon Jan 14 11:48:00 NST 2019; brown Fe 25 2019;
+                            </p>
+                            <p class="rqvali"> Lecture note #14; Use Case
+                                <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/quiz_modification.html">Quiz
+                                    Modification</a> may require updates</p>
+                            <p class="rqveri">Tester does the quiz and can observe the modifications</p>
+                        </li>
+
+                    </ol>
+                </li>
+
+
+                <li class="rqitem">Users can take a quiz.
+                    <ol class="rqlist">
+                        <li class="rqitem" data-moscow="M">Users can take permitted quiz
+                            <p class="rqdesc">If assigned to quiz, and within date and attempt restrictions, users can
+                                proceed through a quiz one question at a time,
+                                submitting their answers. This does not mean students are restricted to take questions
+                                in particular order.</p>
+                            <p class="rqdata">author:brown; date: Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Use Case <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/take_quiz.html">Take
+                                    Quiz</a> was provided
+                                by client.</p>
+                            <p class="rqveri">Tester completes a quiz with the system and instructor retreives an
+                                answer.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">Access limitations are checked
+                            <p class="rqdesc">Student must be listed for quiz; dates and other access limitations are
+                                enforced.</p>
+                            <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                            <p class="rqvali">Client lecture note #14.</p>
+                            <p class="rqveri">Logs into the system; attempt quiz without permission.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">Users can have multiple attempts.
+                            <p class="rqdesc">Users are able to retake a quiz to improve their grade up to the number of
+                                times specified by the instuctor</p>
+                            <p class="rqdata">author:cawadden; date: Thur Jan 10 11:21:30 NST 2019</p>
+                            <p class="rqvali">Use Case <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/take_quiz.html">Take
+                                    Quiz</a> was provided
+                                by client.</p>
+                            <p class="rqveri">Tester completes a retaken quiz with the system and instructor
+                                retreives an answer.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">User can pause quiz.
+                            <p class="rqdesc">The student will have the option to pause the quiz for urgent situations.
+                                They can return to a suspended atttempt quiz </p>
+                            <p class="rqdata">author: dco677; date: Tue Jan 15 20:30:00 NST 2019; brown; date: Sun Fe 24
+                                11:21:30 NST 2019; </p>
+                            <p class="rqvali">Lecture note #14; Use case <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/pause_quiz.html">Pause
+                                    Quiz</a> should be included in other use cases</p>
+                            <p class="rqveri">leave quiz attempt and resume it.</p>
+                        </li>
+
+
+
+
+                    </ol>
+                </li>
+
+
+
+                <li class="rqitem">Quiz Results
+                    <ol class="rqlist">
+
+                        <li class="rqitem">Student View
+                            <ol class="rqlist">
+                                <li class="rqitem" data-moscow="M">Students can view solutions to completed quiz
+                                    <p class="rqdesc">Once the quiz has been completed, and the quiz deadline for
+                                        submission has
+                                        passed, students will be able to view their quiz which now contains the correct
+                                        solutions to each question along with their chosen answer.</p>
+                                    <p class="rqdata">author:cssg02@mun.ca; id:200917250; date: Thurs Jan 10 12:55:10
+                                        NST 2019</p>
+                                    <p class="rqvali">Lecture note #14. Use case <a
+                                            href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/provide_solutions.html">Provide
+                                            Solutions</a></p>
+                                    <p class="rqveri">Tester completes a quiz with the system and retrieves solutions
+                                        after
+                                        deadline passes</p>
+                                </li>
+
+                                <li class="rqitem" data-moscow="M"> Users can check the grades of their submissions
+                                    <p class="rqdesc">Users can access a seperate part of the system to check the grades
+                                        they've
+                                        received on previous quizzes.</p>
+                                    <p class="rqdata">author:cbowe; date: Fri Jan 11 16:03:17 NST 2019</p>
+                                    <p class="rqvali">Lecture note #14. Use Case <a
+                                            href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/take_quiz.html">Take
+                                            Quiz</a> was provided
+                                        by client.</p>
+                                    <p class="rqveri">Student logs in and views grade after completing a quiz.</p>
+                                </li>
+                                <li class="rqitem" data-moscow="M">View attempts
+                                    <p class="rqdesc">Student can view each submitted quiz attempt showing answers
+                                        wrong/right.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Logs into the system; acces attempt.</p>
+                                </li>
+
+                            </ol>
+                        </li>
+
+                        <li class="rqitem">Instructor View
+                            <ol class="rqlist">
+                                <li class="rqitem" data-moscow="M">Instructor views class result statistics
+                                    <p class="rqdesc">View class participation, class average and histogram of class
+                                        performance</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Logs into the system; pick a quiz and view statistics.</p>
+                                </li>
+                                <li class="rqitem" data-moscow="M">Instructor views attempt statistics
+                                    <p class="rqdesc">Show class performance by each attempt, to see how performance
+                                        improves from one attempt to the next.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Logs into the system; select quiz and see summary for each
+                                        attempt.</p>
+                                </li>
+                                <li class="rqitem" data-moscow="M">Instructor views student statistics
+                                    <p class="rqdesc">Need ability to look at individual student performance, across
+                                        quizzes or for a single quiz: Client wants to be able to see each question on
+                                        each attempt on each quiz.</p>
+                                    <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
+                                    <p class="rqvali">Client lecture note #14.</p>
+                                    <p class="rqveri">Logs into the system; select student, quiz, attempt and question
+                                        to view answers and result.</p>
+                                </li>
+
+                            </ol>
+                        </li>
+
+
+                    </ol>
+                </li>
+
+
+                <li class="rqitem">Manual Grading
+                    <ol class="rqlist">
+                        <li class="rqitem" data-moscow="M">Instructor can modify grades.
+                            <p class="rqdesc">Inital grading can be reviewed on a answer-by-answer basis
+                                and altered by a user with instructor priviledges.</p>
+                            <p class="rqdata">author:brown; date: Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Lecture Note #14. Use case
+                                <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/review_submission.html">Review
+                                    Submission</a>
+                                use case.</p>
+                            <p class="rqveri">Log in as instructor, modify student grades.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">Instructor can modify answers.
+                            <p class="rqdesc">Inital grading can be reviewed on a answer-by-answer basis
+                                and a student's answer can be updated and re-graded by a user with instructor
+                                priviledges.</p>
+                            <p class="rqdata">author:brown; date: Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Lecture Note #14. Use case
+                                <a
+                                    href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/review_submission.html">Review
+                                    Submission</a>
+                                use case.</p>
+                            <p class="rqveri">Log in as instructor, modify student answer, see it regraded.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">Instructor can change quiz answers.
+                            <p class="rqdesc">The quiz may have had a bad question. Correct answer to a quiz item and
+                                re-grade the entire class.</p>
+                            <p class="rqdata">author:brown; date: Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Lecture Note #14.
+                            </p>
+                            <p class="rqveri">Log in as instructor, modify quiz answer, see if grades updated.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">Instructor can change quiz results.
+                            <p class="rqdesc">Instructor may want to adjust class overall or curve the quiz results, by
+                                giving a bonus or adjustment to the entire class of students.</p>
+                            <p class="rqdata">author:brown; date: Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Lecture Note #14. </p>
+                            <p class="rqveri">Log in as instructor, modify everyone's grade on a quiz; check individual
+                                student results.</p>
+                        </li>
+                        <li class="rqitem" data-moscow="M">Manual modifications are logged with optional note.
+                            <p class="rqdesc">Manual changes need to be reviewable, so it is possible to tell where
+                                grades came from.</p>
+                            <p class="rqdata">author:brown; date: Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Lecture Note #14.
+                            </p>
+                            <p class="rqveri">Log in as instructor, make modifications, and examine log of previous
+                                changes.</p>
+                        </li>
+                    </ol>
+                </li>
+                <li class="rqitem">Design constraints
+                    <ol class="rqlist">
+                        <li class="rqitem" data-moscow="M">The Flask framemork is used.
+                            <p class="rqdesc">Use of the flask web development framework imposes design
+                                restrictions regarding how web services are stuructured and how mobile devices
+                                are supported. Much of the project architecture is pre-determined by the flask
+                                framework.</p>
+                            <p class="rqdata">author:brown; date:Mon Jan 7 11:21:30 NST 2019</p>
+                            <p class="rqvali">Imposed by the COMP2005 context of the project</p>
+                            <p class="rqveri">Examine the implementation code.</p>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+</body>
+</html>
