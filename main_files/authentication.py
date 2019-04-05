@@ -5,7 +5,7 @@ Contains the Authentication module
 import uuid
 import hashlib
 from persistence import Persistence
-from structures import User
+from structures import User, Class
 
 
 class Authentication:
@@ -61,6 +61,20 @@ class Authentication:
 
         return {"success": True, "user": user}
 
+    def return_flat_user(self, username) -> User:
+        user = self._persist.retrieve(User, username)
+
+        dereferenced_class_list = []
+        for _class in user.classes:
+            dereferenced_class_list.append(vars(self._persist.retrieve(Class, _class)))
+
+        flat_user = dict(vars(user))
+        flat_user["classes"] = dereferenced_class_list
+
+        flat_user.pop("password")
+
+        return flat_user
+
     def get_user(self, username: str) -> User:
         """Return User object matching username.
 
@@ -82,7 +96,7 @@ class Authentication:
         if not user:
             return {"success": False, "message": "User doesn't exist."}
 
-        if not self._check_password(user.password, password):
+        if not self._check_password(user.password, old_password):
             return {"success": False, "message": "Invalid password."}
 
         new_hashed_password = self._hash_password(new_password)

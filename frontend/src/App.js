@@ -14,11 +14,15 @@ import {
 
 import './App.css';
 
+import Sidebar from './components/Sidebar';
 import store, {history} from './store';
 import Home from './screens/Home';
 import Login from './screens/Login';
+import Logout from './screens/Logout';
+import Account from './screens/Account';
+import ChangePassword from './screens/ChangePassword';
 
-const theme = {
+export const theme = {
   global: {
     colors: {
       brand: '#BF263C',
@@ -61,7 +65,7 @@ export default class App extends Component {
           <ConnectedRouter history={history}>
             <Box fill>
               <AppBar>
-                <Heading level='3' margin='none'>Quiz App</Heading>
+                <Heading level='3' margin='none'>Quizm</Heading>
                 <Button
                   icon={<Menu />}
                   onClick={this.toggleAppBar}
@@ -71,46 +75,11 @@ export default class App extends Component {
                 <Box flex align='center' justify='center'>
                   <Route path='/' exact component={Home} />
                   <Route path='/login' component={Login} />
+                  <Route path='/logout' component={Logout} />
+                  <Route path='/account' component={Account} />
+                  <Route path='/changepassword' component={ChangePassword} />
                 </Box>
-                {this.state.showSidebar && (
-                  <Box
-                    width='medium'
-                    background='light-2'
-                    elevation='small'
-                    align='center'
-                    justify='center'
-                    gap='small'
-                  >
-                    <Button
-                      label="Homepage"
-                      onClick={() => {history.push('/')}}
-                    />
-                    {
-                      this.state.token && (
-                        <Button
-                          label="Account"
-                          onClick={() => {history.push('/account')}}
-                        />
-                      )
-                    }
-                    {
-                      this.state.token && (
-                        <Button
-                          label="Logout"
-                          onClick={() => {history.push('/logout')}}
-                        />
-                      )
-                    }
-                    {
-                      !this.state.token && (
-                        <Button
-                          label="Login"
-                          onClick={() => {history.push('/login')}}
-                        />
-                      )
-                    }
-                  </Box>
-                )}
+                {this.state.showSidebar && <Sidebar />}
               </Box>
             </Box>
           </ConnectedRouter>

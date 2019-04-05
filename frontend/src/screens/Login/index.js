@@ -22,18 +22,15 @@ class Login extends Component {
   };
 
   handleLogin = () => {
-    console.log('skaljfhasldkfhasdlkjfh');
-    console.log(this.props.loginSaga(this.state.username, this.state.password));
-    console.log('skaljfhasldkfhasdlkjfh');
+    this.props.loginSaga(this.state.username, this.state.password);
   };
 
   render() {
-    console.log(this.state);
     return (
       <Box
         pad='large'
         align='center'
-        background={{ color: 'light-1', opacity: 'strong' }}
+        background={{color: 'light-1', opacity: 'strong'}}
         round
         gap='small'
       >

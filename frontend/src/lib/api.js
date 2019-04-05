@@ -1,5 +1,5 @@
 //const apiUrl = process.env.REACT_APP_API_URL;
-const apiUrl = 'http://localhost:5000';
+const apiUrl = 'http://localhost:5000/api';
 
 async function get(endpoint, {token}) {
   const response = await fetch(`${apiUrl}/${endpoint}`, {
@@ -7,6 +7,9 @@ async function get(endpoint, {token}) {
       'Authorization': `JWT ${token}`
     },
   });
+  if(!response.ok) {
+    throw new Error(response);
+  }
   return await response.json();
 }
 
@@ -19,11 +22,19 @@ async function post(endpoint, data, {token} = {}) {
     },
     body: JSON.stringify(data),
   });
-  return await response.json();
+  const json = await response.json();
+  if(!response.ok) {
+    throw new Error(json);
+  }
+  return json;
 }
 
 export async function login({username, password}) {
   const response = await post('login', {username, password});
-  console.log(response);
+  return response;
+}
+
+export async function getWhoami({token}) {
+  const response = await get('whoami', {token});
   return response;
 }
