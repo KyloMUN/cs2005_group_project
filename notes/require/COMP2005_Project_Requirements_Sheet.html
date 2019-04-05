@@ -49,6 +49,7 @@
                     </ol>
                 </li>
 
+
                 <li class="rqitem">Instructors can create a quiz
                     <ol class="rqlist">
                         <li class="rqitem" data-moscow="M">Instructors can create a quiz.
@@ -104,8 +105,6 @@
                             <p class="rqveri">Logs into the system; add item to bank.</p>
                         </li>
 
-
-
                         <li class="rqitem" data-moscow="M">Instructor can add dates.
                             <p class="rqdesc">The instructor can specify how long the students will have to complete
                                 a quiz by adding begin and end dates when the quiz is created.</p>
@@ -145,6 +144,16 @@
                             <p class="rqveri">Tester does the quiz and can observe the modifications</p>
                         </li>
 
+                        <li class="rqitem" data-moscow="S">Quizzes can be assigned time limits.
+                            <p class="rqdesc"> Instructor can add a time limit that limits how long a student has
+                                to complete their quiz, once startng it. </p>
+                            <p class="rqdata"> author: KOlm; date: Fri Jan 11th 3:30:30 NST 2019 </p>
+                            <p class="rqvali"> Use Case 
+                                <a href="http://www.cs.mun.ca/~brown/cs2005/Notes/project/usecases/time_limit.html">Time Limit</a>
+                            </p>
+                            <p class="rqveri">Tester begins quiz and if they are not done when the time limit expires their
+                                work is submitted and they cannot continue working. </p>
+                        </li>
                     </ol>
                 </li>
 
@@ -219,6 +228,13 @@
                                     <p class="rqveri">Tester completes a quiz with the system and retrieves solutions
                                         after
                                         deadline passes</p>
+                                        <p>This function does exist in our project. By retrieved students' answers, correct answer, and questions of the specific quiz
+                                            from persistence, we can create an Result object which stores each students' answer, correct answers and questions. The student
+                                            answer is stored in a Grade object which is created by the Result object. The 'self.answer' is a list from the grade object that
+                                            stores the student's
+                                            answers for all the attempts, retrieve its sublist to obtain the desired attempt answer. The get_question(), and get_correct_answer() methods
+                                            from the Result object allows us to retrieve the questions and correct answers.
+                                        </p>
                                 </li>
 
                                 <li class="rqitem" data-moscow="M"> Users can check the grades of their submissions
@@ -231,6 +247,14 @@
                                             Quiz</a> was provided
                                         by client.</p>
                                     <p class="rqveri">Student logs in and views grade after completing a quiz.</p>
+                                    <p>This function does exist in our project. By retrieved students' answers from persistence, we can create an Result 
+                                        object that stores the specify quiz result 
+                                        (for example, by pass a 1 to the parameter 'quizNumber' indicate the result of quiz 1), 
+                                        the Result object will create Grade object to each students, 
+                                        and then the grade of each students of the quiz can automatically calculated by the methods 
+                                        check_answer(), calculate_grade(). Using the getHighestGrade() method to retrieve the quiz grade.
+                                        Also, from different Result object we can obtain the differnt quiz grade for the student.
+                                    </p>
                                 </li>
                                 <li class="rqitem" data-moscow="M">View attempts
                                     <p class="rqdesc">Student can view each submitted quiz attempt showing answers
@@ -238,6 +262,13 @@
                                     <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
                                     <p class="rqvali">Client lecture note #14.</p>
                                     <p class="rqveri">Logs into the system; acces attempt.</p>
+                                    <p>This function does exist in our project. By retrieved students' answers, correct answer, and questions of the specific quiz
+                                            from persistence, we can create an Result object which stores each students' answer, correct answers and questions. The student
+                                            answer is stored in a Grade object which is created by the Result object. The 'self.answer' is a list from the grade object that
+                                            stores the student's
+                                            answers for all the attempts, retrieve its sublist to obtain the desired attempt answer. The get_question(), and get_correct_answer() methods
+                                            from the Result object allows us to retrieve the questions and correct answers.
+                                        </p>
                                 </li>
 
                             </ol>
@@ -251,6 +282,10 @@
                                     <p class="rqdata">author:brown; date: Sun Fe 24 11:21:30 NST 2019</p>
                                     <p class="rqvali">Client lecture note #14.</p>
                                     <p class="rqveri">Logs into the system; pick a quiz and view statistics.</p>
+                                    <p>This fuction does exist partially in our project. Use the methods calculate_participation and get_participation form
+                                        the Result object to view class participation; Use the methods calculate_Average and getAverage to view class average.
+                                        For histogram of the class, we fail to implement its functionality on the method createHistogram.
+                                    </p>
                                 </li>
                                 <li class="rqitem" data-moscow="M">Instructor views attempt statistics
                                     <p class="rqdesc">Show class performance by each attempt, to see how performance
@@ -259,6 +294,12 @@
                                     <p class="rqvali">Client lecture note #14.</p>
                                     <p class="rqveri">Logs into the system; select quiz and see summary for each
                                         attempt.</p>
+                                        <p>
+                                            This function does exist in our project. From the result object of a quiz, use the method get_student_grade_object to
+                                            retrieve the grade object of a desired student by passing the student id to the parameter. From the grade oject, we 
+                                            can retrieved the different attempts' grade by the method getAttemptGrade, also using the method getNumberAttempts to
+                                            see how many attempts did the student take to finish this quiz.
+                                        </p>
                                 </li>
                                 <li class="rqitem" data-moscow="M">Instructor views student statistics
                                     <p class="rqdesc">Need ability to look at individual student performance, across
@@ -268,6 +309,15 @@
                                     <p class="rqvali">Client lecture note #14.</p>
                                     <p class="rqveri">Logs into the system; select student, quiz, attempt and question
                                         to view answers and result.</p>
+                                        <p>
+                                            This function does exist in our project. From the result object of a quiz, use the method get_student_grade_object to
+                                            retrieve the grade object of a desired student by passing the student id to the parameter. The student
+                                            answer is stored in a Grade object. The 'self.answer' is a list from the grade object that
+                                            stores the student's
+                                            answers for all the attempts, retrieve its sublist to obtain the desired attempt answer. The get_question(), and get_correct_answer() methods
+                                            from the Result object allows us to retrieve the questions and correct answers. The method get_quiz_number() from the result object
+                                            allows us to which quiz result it is.
+                                        </p>
                                 </li>
 
                             </ol>
@@ -276,6 +326,8 @@
 
                     </ol>
                 </li>
+
+
 
 
                 <li class="rqitem">Manual Grading

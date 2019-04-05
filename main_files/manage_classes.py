@@ -1,23 +1,23 @@
 """manage_classes.py.
 
-Contains the ManageClasses module
+Contains the ManageClasses module.
 """
 from persistence import Persistence
 from structures import Class, User
 
 
 class ManageClasses:
-    """Manage the creation, and modification of a class."""
+    """Manages the creation, and modification of a class, including seeing and editing which students are in which Class structure objects."""
 
     def __init__(self, persist=None):
-        """Create a Authentication instance."""
+        """Creates a persistence instance if one is provided."""
         if not persist:
             self._persist = Persistence()
         else:
             self._persist = persist
 
     def add_class(self, classname: str, professor: str) -> dict:
-        """Add a user to the system.
+        """This method adds a class to the persistence system using a classname and a professor, and returns a dictionary.
 
         Keyword arguments:
         classname -- name of a class, example COMP 1002
@@ -42,7 +42,7 @@ class ManageClasses:
         return {"success": True, "class_id": new_class.id}
 
     def get_class(self, classid: str) -> Class:
-        """Returns a class from the system.
+        """Returns a class from the system by finding the class with the corresponding class id string.
 
         Keyword arguments:
         classid -- id of a class
@@ -55,6 +55,9 @@ class ManageClasses:
         return _class
 
     def assign_class_to_user(self, username: str, class_id: str) -> dict:
+        '''
+        This method grabs a username and a class id and appends that user to the class, depending on if the class and the user both exist in the system.
+        '''
         user = self._persist.retrieve(User, username)
         if not user:
             return {"success": False, "message": "User doesn't exist."}

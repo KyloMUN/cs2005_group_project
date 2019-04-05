@@ -122,7 +122,7 @@ class Result:
 
     gradeObjectList: a list that contains each student's the grade objects, by using this list, each student's highest grade can be retrieved
     """
-    def __init__(self, dictionaryofstudentanswer, pointList, questionList, quizNumber):
+    def __init__(self, dictionaryofstudentanswer, pointList, questionList, quizNumber, correctAnswer):
         self.quiz_number = quizNumber
         self.question_list = questionList
         self.point_list = pointList
