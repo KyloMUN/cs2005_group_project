@@ -25,6 +25,7 @@ for i in mylist:
 qp = QuizInProgress()
 qp.setQuizId("1111")
 tq = TakingQuiz(qp)
+
 class TestTakingQuiz(unittest.TestCase):
     def test_submit(self):
         tq.submit()
@@ -39,23 +40,20 @@ class TestTakingQuiz(unittest.TestCase):
         tq.submit()
         check=storage._shelf["QuizInProgress"]
         with self.assertRaises(KeyError):
-                check["11111"] 
-        
-        
+                check["11111"]
 
 class TestTakeQuiz(unittest.TestCase):
-
     def test_setQuestion(self):
         qp.setQuestions()
         self.assertEqual(type(qp.getQuestions()), dict)
 
     def test_getQuizAnswer(self):
         self.assertEqual(type(qp.getQuizAnswer()), dict)
-                        
+
     def test_loadQuiz(self):
         self.assertTrue(qp.loadQuiz(q))
         self.assertFalse(qp.loadQuiz(2))
-        
+
     def test_get_quest_id(self):
         qp.loadQuiz(q)
         self.assertEqual(qp.get_quest_id(1), 2)
@@ -64,8 +62,6 @@ class TestTakeQuiz(unittest.TestCase):
         qp.loadQuiz(q)
         self.assertTrue(qp.checkTimeLimit())
 
-        
-        
     def test_getQuestion(self):
         qp.loadQuiz(q)
         self.assertEqual(qp.getQuestionText(0), 'question1')
@@ -86,9 +82,8 @@ class TestTakeQuiz(unittest.TestCase):
 
     def test_setAnswer(self):
         qp.loadQuiz(q)
-        
         self.assertEqual(len(qp.getQuizAnswer()), 0)
-            
+
     def test_incrAttempts(self):
         qp.loadQuiz(q)
         self.assertEqual(qp.attemps, 4)
@@ -96,7 +91,6 @@ class TestTakeQuiz(unittest.TestCase):
     def test_incrAttempts_fail(self):
         self.assertNotEqual(qp.attemps, 6)
 
-    
     def test_checkAttempts(self):
         qp.loadQuiz(q)
         qp.incrAttempts()
@@ -112,7 +106,5 @@ class TestTakeQuiz(unittest.TestCase):
         qp.submit()
         self.assertTrue(qp.complete)
 
-
-        
 if __name__ == '__main__':
     unittest.main()

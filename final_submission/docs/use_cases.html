@@ -1,0 +1,211 @@
+<link rel="stylesheet" href="../style.css">
+<h1 id="use-cases">Use Cases</h1>
+
+<h2 id="login-authenticate-persistence">Login, Authenticate, Persistence</h2>
+<p>Title: Creating and logging into the application</p>
+<p>Primary Actor: Professor</p>
+<p>Stakeholders and Interests:</p>
+<ul class="incremental">
+<li><p>Student: Wants an account to view quizzes for a class he is physically enrolled in.</p></li>
+<li><p>Professor: Wants to create account for student, and assign to class.</p></li>
+</ul>
+<p>Tech: Does not want to have the password for any of the above stakeholders to be stored in the database/logs, but wants all created users to end up stored in the database correctly.</p>
+<p>Precondition: Professors account exists in the storage.</p>
+<p>Main Scenario:</p>
+<ol class="incremental" type="1">
+<li>Professor logs into account with correct credentials</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>If credentials are incorrect, is not logged in.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li><p>Professor navigates to page to create a new user.</p></li>
+<li><p>Professor creates a new user.</p></li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Professor is not permitted to create a user with the username of a user already in storage.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li><p>Professor adds new user to a class.</p></li>
+<li><p>Student logs in.</p></li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>If credentials are incorrect, is not logged in.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li>Student can view quizzes for class he was assigned to by the Professor.</li>
+</ol>
+<h2 id="create-quiz">Create Quiz</h2>
+<p>Title: Create Quiz</p>
+<p>Primary Actor: Instructor</p>
+<p>Stakeholders:</p>
+<ul class="incremental">
+<li><p>Student: Wants to take quiz.</p></li>
+<li><p>Instructor: Wants to make quiz.</p></li>
+<li><p>Technician: Wants a smooth running system.</p></li>
+</ul>
+<p>Precondition: User is logged in as a instructor.</p>
+<p>Main Scenario:</p>
+<ol class="incremental" type="1">
+<li>Instructor navigates to create quiz interface using a button on their home page.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Instructor can also follow a direct link.</li>
+</ol>
+</blockquote>
+<ol class="incremental" start="2" type="1">
+<li>Instructor is presented a form to begin building their quiz.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Quiz saved for later time to finish, if undone at release time, is not deployed.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li>Instructor fills out all fields in their form and reaches point where they need only to add questions.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li><p>Unfilled attributes</p></li>
+<li><p>Unfinished quiz can be opened to be finished.</p></li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li>Instructor adds a question, is presented with the option to add a new one. Form extends if they do.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Not priority, deploying with 3 questions for functionality.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li>Quiz is saved by professor when they are satisfied.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Can be changed before start date.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li>Questions in the quiz are sent to the question bank.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Question Bank can be accessed at any time</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li>Quiz is passed to storage.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Instructor cannot modify the quiz after start time.</li>
+</ol>
+</blockquote>
+<h2 id="take-quiz">Take Quiz</h2>
+<p>Title: Take Quiz</p>
+<p>Primary Actor: Student</p>
+<p>Stakeholders and Interests:</p>
+<ul class="incremental">
+<li>Student: Wants to take a quiz.</li>
+</ul>
+<p>Preconditions:</p>
+<p>Student already logged in.</p>
+<p>Quiz created.</p>
+<p>Main scenario:</p>
+<ol class="incremental" type="1">
+<li>User opens quiz.</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>User has exhausted attempts, is shown a message they may not proceed with the quiz and they can go to the main menu or log out.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li><p>User chooses answers for questions.</p></li>
+<li><p>User submits quiz.</p></li>
+<li><p>User is moved to page of submission.</p></li>
+<li><p>User may now go to main menu or log out.</p></li>
+</ol>
+<h2 id="automatic-grading">Automatic Grading</h2>
+<p>Title: Review Class Result</p>
+<p>Primary Actor: Instructor</p>
+<p>Stakeholders and Interests:</p>
+<ul class="incremental">
+<li><p>Instructor: Wants to review the class result of a quiz</p></li>
+<li><p>Precondition: User with Instructor privileges logged in already.</p></li>
+</ul>
+<p>Main Scenario:</p>
+<ol class="incremental" type="1">
+<li><p>Instructor selects quiz for review</p></li>
+<li><p>SuD lists class result and student submissions</p></li>
+<li><p>Instructor selects class result</p></li>
+<li><p>SuD displays the quiz items from top to bottom follows the order: participation, then average grade, then the histogram.</p></li>
+<li><p>Instructor return to the previous page and select student submissions</p></li>
+<li><p>SuD list all the student name with corresponding id that can take the quiz</p></li>
+<li><p>Instructor select one of the student as desired</p></li>
+<li><p>SuD displays items from to bottom follows the order: the student name, id, then the attempt 1 with its grade, then attempt 2 with its grade up to the number of attempts that the student took, lastly the highest grade</p></li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>No attempts shows if student did not take the quiz</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Instructor select one of the attempt as desired.</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li>SuD displays the quiz questions with its corresponding correct answers and also with the student answers for instructor to review</li>
+</ol>
+<blockquote>
+<ol class="incremental" type="1">
+<li>Any question without a student answer means the student did not answer the corresponding question</li>
+</ol>
+</blockquote>
+<ol class="incremental" type="1">
+<li><p>Instructor repeats step 9 to 10.</p></li>
+<li><p>Instructor repeats step 5 to 11.</p></li>
+</ol>
+<h3 id="manual-grading">Manual Grading</h3>
+<p>Title: Correct a True or False Question</p>
+<p>Primary Actor: Instructor</p>
+<p>Stakeholders and Interests:</p>
+<ul class="incremental">
+<li><p>Instructor: Wants to fix an answer to a question.</p></li>
+<li><p>Student: Wants a higher grade on the question.</p></li>
+<li><p>Other Instructors: Wants a note of the change made.</p></li>
+</ul>
+<p>Precondition: Instructor is logged into the persistence system in their instructor account.</p>
+<p>Main Scenario:</p>
+<ol class="incremental" type="1">
+<li><p>Instructor pulls quiz from system, with it’s grading and question set included.</p></li>
+<li><p>Instructor chooses the question of interest and runs a program over it to change the correct answer.</p></li>
+<li><p>The instructor logs this change for later review.</p></li>
+<li><p>The system receives the correct answer, goes back through the persistence and correctly modifies the automatic grading components with no input from instructor.</p></li>
+<li><p>Instructor repeats 2-4 for however many broken questions there may be.</p></li>
+<li><p>Instructor logs out.</p></li>
+</ol>
+
+<pre>
+       ,.,
+      MMMM_    ,..,
+        "_ "__"MMMMM          ,...,,
+ ,..., __." --"    ,.,     _-"MMMMMMM
+MMMMMM"___ "_._   MMM"_."" _ """"""
+ """""    "" , \_.   "_. ."
+        ,., _"__ \__./ ."
+       MMMMM_"  "_    ./
+        ''''      (    )
+ ._______________.-'____"---._.
+  \                          /
+   \________________________/
+   (_)                    (_)</pre>
